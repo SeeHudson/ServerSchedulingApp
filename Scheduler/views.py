@@ -4,10 +4,6 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 import Scheduler
-from Scheduler.classes.app_user import AppUserClass
-from Scheduler.models import AppUser, Course
-import Scheduler.classes.course
-
 
 
 # Create your views here.
@@ -15,7 +11,7 @@ def index(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
     if request.method == 'GET':
-        return render(request, 'Scheduler/index.html')
+        return render(request, 'Scheduler/login.html')  # To-Do: Fix
     return HttpResponseRedirect(reverse(request.POST['pageURL']))
 
 

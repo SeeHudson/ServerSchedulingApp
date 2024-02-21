@@ -1,4 +1,9 @@
 from .models import AppUser
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+
+from .forms import AppUserCreationForm, AppUserChangeForm
+from .models import AppUser
 
 
 class AppUserAdmin(UserAdmin):
@@ -22,3 +27,4 @@ class AppUserAdmin(UserAdmin):
 
 
 admin.site.register(AppUser, AppUserAdmin)
+

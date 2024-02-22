@@ -1,33 +1,27 @@
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
-from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
-
-from .managers import AppUserManager
-
-
 # Create your models here.
-class AppUser(AbstractBaseUser, PermissionsMixin):
-    uID = models.CharField(_('user ID'), max_length=9, primary_key=True)
-    email = models.EmailField(_('email address'), unique=True)
-    first_name = models.CharField(_('first name'), max_length=30, blank=True)
-    last_name = models.CharField(_('last name'), max_length=150, blank=True)
-    phone = models.CharField(_('phone number'), max_length=10, blank=True)
-    address = models.CharField(_('address'), max_length=100, blank=True)
-    city = models.CharField(_('city'), max_length=50, blank=True)
-    state = models.CharField(_('state'), max_length=2, blank=True)
-    zip_code = models.CharField(_('zip code'), max_length=5, blank=True)
+# starting idea for DB imp in models
+class Server(models.Model):
+    email = models.EmailField(primary_key=True)
+    name = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=20)
 
+class Shift(models.Model):
+    date = models.DateField(auto_now_add=True, primary_key=True)
+    shift_type = models.CharField(max_length=50)
+    shift_weight = models.IntegerField()
 
-    is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
-    date_joined = models.DateTimeField(default=timezone.now)
+class Shifts(models.Model):
+    shift_server_id = models.AutoField(primary_key=True)
+    shift = models.ForeignKey(Shift, on_delete=models.CASCADE)
+    server = models.ForeignKey(Server, on_delete=models.CASCADE, to_field='email')
+    server_score = models.IntegerField()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['uID']
+class WeeklySchedule(models.Model):
+    week_start_date = models.DateField(auto_now_add=True, primary_key=True)
+    shift = models.ForeignKey(Shifts, on_delete=models.CASCADE)
 
-    objects = AppUserManager()
-
-    def __str__(self):
-        return self.email
-
+class Availability(models.Model):
+    shift = models.CharField(max_length=50, primary_key=True)
+    server = models.ForeignKey(Server, on_delete=models.CASCADE, to_field='email')
+    available = models.BooleanField()

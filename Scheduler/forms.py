@@ -4,11 +4,14 @@ from django.contrib.auth.forms import UserChangeForm
 from django.forms import ModelForm
 from .models import Employee
 
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+
 
 class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2', 'role']
+        fields = ['username', 'email', 'password1', 'role']
 
 
 class UserUpdateForm(UserChangeForm):

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Personal Information</title>
+    {% bootstrap_css %}
+    {% load static %}
+    <!--<link rel="stylesheet" href="{% static 'styles.css' %}">-->
+</head>
+<body>
+<form method = "post">
+    {% csrf_token %}
+    <div class="row"> <!--First Name-->
+    </div>
+    <div class="row"> <!--Last Name-->
+    </div>
+    <div class="row"> <!--Email // Display Only-->
+    </div>
+    <div class="row"> <!--Phone Number-->
+    </div>
+    <div class="row"> <!--Address-->
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit">
+</form>
+</body>
+</html>

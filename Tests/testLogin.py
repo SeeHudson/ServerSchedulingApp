@@ -17,7 +17,7 @@ class TestLogin(TestCase):
         email_attempt = "test@example.com"
         password_attempt = "testpassword"
         response = self.client.post('login/', {'email': email_attempt, 'password': password_attempt})
-        self.assertRedirects(response, '') #index??
+        self.assertRedirects(response, '') #index
 
     def test_invalidEmail(self):
         # Test case 2: Invalid email

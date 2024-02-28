@@ -26,6 +26,48 @@ body {
     padding: 20px;
 }
 
+.ShiftsToday{
+    background-color: #ddd;
+    color: black;
+    text-align: center;
+}
+
+.ShiftsToday div {
+        text-align: center;
+        width: 300px;
+        border: 15px solid green;
+        padding: 50px;
+        margin: 20px;
+    }
+
+.ShiftsUpcoming{
+    background-color: #ddd;
+    color: black;
+    text-align: center;
+}
+
+.ShiftsUpcoming div {
+        text-align: center;
+        width: 300px;
+        border: 15px solid green;
+        padding: 50px;
+        margin: 20px;
+    }
+
+.ShiftPool{
+    background-color: #ddd;
+    color: black;
+    text-align: center;
+}
+
+.ShiftPool div {
+        text-align: center;
+        width: 300px;
+        border: 15px solid green;
+        padding: 50px;
+        margin: 20px;
+    }
+
 .announcements {
     background-color: #fff;
     padding: 20px;

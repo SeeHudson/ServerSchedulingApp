@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', Login.as_view(), name='login'),
     path('dashboard/', Dashboard.as_view(), name="dashboard"),
+    path('editPersonalInfo/', EditPersonalInfo.as_view(), name='editPersonalInfo')
 ]

@@ -3,24 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit Personal Information</title>
-    {% bootstrap_css %}
     {% load static %}
-    <!--<link rel="stylesheet" href="{% static 'styles.css' %}">-->
+    <link rel="stylesheet" href="{% static "stylesheets/styles.css" %}">
 </head>
 <body>
+<div class="navbar">
+        <a href="{% url 'dashboard' %}">Restaurant</a>
+        <a href="{% url 'dashboard' %}">Schedule</a>
+        <a href="{% url 'dashboard' %}">Notifications</a>
+        <a href="{% url 'dashboard' %}">Account</a>
+        <a href="{% url 'login' %}">Logout</a>
+</div>
 <form method = "post">
     {% csrf_token %}
     <div class="row"> <!--First Name-->
+        <label for="first_name" class="col-sm-3 col-form-label">First Name</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="first_name" name="first_name" required value="{{ Employee.get_first_name }}">
+        </div>
     </div>
     <div class="row"> <!--Last Name-->
+        <label for="last_name" class="col-sm-3 col-form-label">Last Name</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="last_name" name="last_name" required value="{{ Employee.get_last_name }}">
+        </div>
     </div>
     <div class="row"> <!--Email // Display Only-->
+        <label for="email" class="col-sm-3 col-form-label">Email</label>
+        <div>
+            <p>{{ Employee.get_email }}</p>
+        </div>
     </div>
     <div class="row"> <!--Phone Number-->
+        <label for="phone_number" class="col-sm-3 col-form-label">Phone Number</label>
+        <div class="col-sm-9">
+            <input type="phone_number" class="form-control" id="phone_number" name="phone_number" value="{{ account.get_phone_number }}">
+        </div>
     </div>
     <div class="row"> <!--Address-->
+        <label for="address" class="col-sm-3 col-form-label">Address</label>
+        <div class="col-sm-9">
+            <input type="address" class="form-control" id="address" name="address" value="{{ account.get_address }}">
+        </div>
     </div>
+    <!--Buttons-->
     <input type="submit" class="btn btn-primary" value="Submit">
+    {% if account.get_primary_key == current_user.get_primary_key %}
+        <a class="btn btn-primary" href="{% url 'dashboard' %}">Cancel</a>
+    {% else %}
+        <a class="btn btn-primary" href="{% url 'accounts' %}">Cancel</a>
+    {% endif %}
 </form>
 </body>
 </html>

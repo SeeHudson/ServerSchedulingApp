@@ -4,21 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Scheduling Dashboard</title>
+    {% load static %}
     <link rel="stylesheet" href="{% static "stylesheets/styles.css" %}">
 </head>
 <body>
     <div class="navbar">
-        <a href="{% url 'dashboard' %}">Dashboard</a>
-        <a href="{% url 'account_info' %}">Account Info</a>
-        <a href="{% url 'request_time_off' %}">Request Time Off</a>
-        <a href="{% url 'availability_page' %}">Availability Page</a>
-        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'dashboard' %}">Restaurant</a>
+        <a href="{% url 'dashboard' %}">Schedule</a>
+        <a href="{% url 'dashboard' %}">Notifications</a>
+        <a href="{% url 'dashboard' %}">Account</a>
+        <a href="{% url 'login' %}">Logout</a>
     </div>
-    <div class="content">
-        <!-- Content for the dashboard goes here -->
+    <div class="ShiftsToday">
+        <!-- if(has shift today) display shift else display "no shift today" -->
+         <h2>Shifts Today</h2>
+        {% if has_shift_today %}
+        <!-- Display today's shift details -->
+        {% else %}
+        <p>No shifts today.</p>
+        {% endif %}
     </div>
-    <div class="announcements">
+    <div class="ShiftsUpcoming">
+        <!-- Upcoming shifts section goes here -->
+         <h2>Upcoming Shifts</h2>
+        
+        <!-- Upcoming shifts details go here -->
+    </div>
+    <div class="ShiftPool">
         <!-- Announcements section goes here -->
+         <h2>Shift Pool</h2>
     </div>
 </body>
 </html>

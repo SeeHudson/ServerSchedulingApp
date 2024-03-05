@@ -11,7 +11,7 @@
         <a href="{% url 'dashboard' %}">Restaurant</a>
         <a href="{% url 'dashboard' %}">Schedule</a>
         <a href="{% url 'dashboard' %}">Notifications</a>
-        <a href="{% url 'dashboard' %}">Account</a>
+        <a href="{% url 'account' %}">Account</a>
         <a href="{% url 'login' %}">Logout</a>
 </div>
 <form method = "post">
@@ -21,18 +21,22 @@
         <label for="first_name" class="col-sm-3 col-form-label"><strong>First Name</strong></label>
         <input type="text" class="form-control" id="first_name" name="first_name" required placeholder="FIRST NAME HERE" required value="{{ User.get_first_name }}">
     </div>
+        <br>
     <div class="form-group"> <!--Last Name-->
         <label for="last_name" class="col-sm-3 col-form-label"><strong>Last Name</strong></label>
         <input type="text" class="form-control" id="last_name" name="last_name"  required placeholder="LAST NAME HERE" required value="{{ User.get_last_name }}">
     </div>
+        <br>
     <div class="form-group"> <!--Email // Display Only-->
         <label for="email" class="col-sm-3 col-form-label"><strong>Email</strong></label>
         <p>{{ Employee.get_email }}</p>
     </div>
+        <br>
     <div class="form-group"> <!--Phone Number-->
         <label for="phone_number" class="col-sm-3 col-form-label"><strong>Phone Number</strong></label>
         <input type="phone_number" class="form-control" id="phone_number" name="phone_number" required placeholder="PHONE NUMBER HERE" required value="{{ User.get_phone_number }}">
     </div>
+        <br>
     <div class="form-group"> <!--Address-->
         <label for="address" class="col-sm-3 col-form-label"><strong>Address</strong></label>
         <br>
@@ -54,7 +58,7 @@
     {% if account.get_primary_key == current_user.get_primary_key %}
         <a class="btn btn-primary" href="{% url 'dashboard' %}">Cancel</a>
     {% else %}
-        <a class="btn btn-primary" href="{% url 'accounts' %}">Cancel</a>
+        <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
     {% endif %}
 </form>
 </body>

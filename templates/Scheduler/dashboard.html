@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Scheduling Dashboard</title>
+    <link rel="stylesheet" href="{% static "stylesheets/styles.css" %}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'account_info' %}">Account Info</a>
+        <a href="{% url 'request_time_off' %}">Request Time Off</a>
+        <a href="{% url 'availability_page' %}">Availability Page</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+    <div class="content">
+        <!-- Content for the dashboard goes here -->
+    </div>
+    <div class="announcements">
+        <!-- Announcements section goes here -->
+    </div>
+</body>
+</html>

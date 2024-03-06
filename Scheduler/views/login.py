@@ -7,12 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 
 class Login(View):
-    # def index(request):
-    #     if not request.user.is_authenticated:
-    #         return HttpResponseRedirect(reverse('login'))
-    #     if request.method == 'GET':
-    #         return render(request, 'Scheduler/login.html')  # To-Do: Fix
-    #     return HttpResponseRedirect(reverse(request.POST['pageURL']))
+
     def get(self, request):
         form = AuthenticationForm
         return render(request, 'Scheduler/login.html', {'form': form})

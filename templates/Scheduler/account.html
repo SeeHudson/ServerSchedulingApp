@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "stylesheets/styles.css" %}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'dashboard' %}">Restaurant</a>
+        <a href="{% url 'dashboard' %}">Schedule</a>
+        <a href="{% url 'dashboard' %}">Notifications</a>
+        <a href="{% url 'account' %}">Account</a>
+        <a href="{% url 'login' %}">Logout</a>
+    </div>
+    <div class="AccountInformation">
+        <h2>Account Information:</h2>
+        <p>FIRST NAME LAST NAME </p>
+        <p>EMAIL</p>
+        <p>PHONE NUMBER</p>
+        <p>ADDRESS</p>
+        <button onclick="location.href = 'editPersonalInfo/';" id="editInfo" class="float-left submit-button" >Edit</button>
+    </div>
+    <div class="Availability">
+        <h2>Availability:</h2>
+        <p>Availability for next Schedule</p>
+        <p><pre>    Sunday (##/##): </pre></p>
+        <p><pre>    Monday (##/##): </pre></p>
+        <p><pre>    Tuesday (##/##): </pre></p>
+        <p><pre>    Wednesday (##/##): </pre></p>
+        <p><pre>    Thursday (##/##): </pre></p>
+        <p><pre>    Friday (##/##): </pre></p>
+        <p><pre>    Saturday (##/##): </pre></p>
+        <button onclick="location.href = 'updateavailability/';" id="updateAvailability" class="float-left submit-button" >Edit</button>
+    </div>
+    <div class="AccountCreation">
+        <p>Account Creation</p>
+        <button onclick="location.href = 'accountcreation/';" id="createAccount" class="float-left submit-button" >Edit</button>
+    </div>
+</body>
+</html>

@@ -55,6 +55,7 @@ def insert_data():
     shift6 = Shift.objects.create(day='We', startTime=time(14, 0), endTime=time(19, 0))
     shift7 = Shift.objects.create(day='Th', startTime=time(9, 0), endTime=time(13, 0))
     shift8 = Shift.objects.create(day='Th', startTime=time(14, 0), endTime=time(19, 0))
+    shift9 = Shift.objects.create(day='Fr', startTime=time(14, 0), endTime=time(19, 0))
 
     # Assign Shifts to Employees
     EmployeeShift.objects.create(user=employee1, shift=shift1)
@@ -69,6 +70,7 @@ def insert_data():
     EmployeeShift.objects.create(user=employee4, shift=shift6)
     EmployeeShift.objects.create(user=employee1, shift=shift7)
     EmployeeShift.objects.create(user=employee4, shift=shift8)
+    EmployeeShift.objects.create(user=employee2, shift=shift9)
 
 
 def delete_user(username):

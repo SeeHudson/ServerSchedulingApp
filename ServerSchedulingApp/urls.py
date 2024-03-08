@@ -16,16 +16,22 @@ Including another URLconf
 """
 from django.urls import path
 from django.contrib import admin
-from Scheduler.views import *
+from Scheduler.views import Account, Dashboard, EditPersonalInfo, Login
+from Scheduler.views.creation import Creation
+from Scheduler.views.updateAvailablilty import UpdateAvailability
 
 
 urlpatterns = [
     # Might need to be removed
     path('admin/', admin.site.urls),
-    path('login/', Login.as_view(), name='login'),
+    path('', Login.as_view(), name='login'),
     path('dashboard/', Dashboard.as_view(), name="dashboard"),
     path('display_all_shifts/', Display_All_Shifts.as_view(), name='display_all_shifts'),
     path('account/editPersonalInfo/', EditPersonalInfo.as_view(), name='editPersonalInfo'),
     path('account/', Account.as_view(), name='account'),
     path('serverscore/', ServerScore.as_view(), name='serverscore'),
+    path('dashboard/account/editPersonalInfo/', EditPersonalInfo.as_view(), name='editPersonalInfo'),
+    path('dashboard/account/accountcreation/', Creation.as_view(), name='creation'),
+    path('dashboard/account/updateavailability/', UpdateAvailability.as_view(), name='updateAvailability'),
+    path('dashboard/account/', Account.as_view(), name='account')
 ]

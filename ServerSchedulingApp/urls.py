@@ -24,6 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', Login.as_view(), name='login'),
     path('dashboard/', Dashboard.as_view(), name="dashboard"),
+    path('viewAllUsers/', viewAllUsers.as_view(), name="viewAllUsers"),
+    path('serverScore/', serverScore.as_view(), name="serverScore"),
     path('account/editPersonalInfo/', EditPersonalInfo.as_view(), name='editPersonalInfo'),
     path('account/', Account.as_view(), name='account')
 ]

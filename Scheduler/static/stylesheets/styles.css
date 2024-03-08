@@ -110,6 +110,34 @@ body {
         margin: 20px;
     }
 
+.AccountInformation{
+    background-color: #ddd;
+    color: black;
+    text-align: left;
+}
+
+.AccountInformation div {
+        text-align: left;
+        width: 300px;
+        border: 15px solid green;
+        padding: 50px;
+        margin: 20px;
+    }
+
+.Availability{
+    background-color: #ddd;
+    color: black;
+    text-align: left;
+}
+
+.Availability div {
+        text-align: left;
+        width: 300px;
+        border: 15px solid green;
+        padding: 50px;
+        margin: 20px;
+    }
+
 .announcements {
     background-color: #fff;
     padding: 20px;

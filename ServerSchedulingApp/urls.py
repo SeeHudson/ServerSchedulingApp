@@ -25,4 +25,6 @@ urlpatterns = [
     path('login/', Login.as_view(), name='login'),
     path('dashboard/', Dashboard.as_view(), name="dashboard"),
     path('display_all_shifts/', Display_All_Shifts.as_view(), name='display_all_shifts'),
+    path('account/editPersonalInfo/', EditPersonalInfo.as_view(), name='editPersonalInfo'),
+    path('account/', Account.as_view(), name='account')
 ]

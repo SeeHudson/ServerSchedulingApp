@@ -16,4 +16,4 @@ class AllUsers(View):
         request.session.delete("message")
         if message == None:
             message = ""
-        return render(request, 'Scheduler/allUsers.html', {'userList': allUsers, 'message': message})
+        return render(request, 'Scheduler/allUser.html', {'userList': allUsers, 'message': message})

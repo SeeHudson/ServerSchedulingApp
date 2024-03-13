@@ -16,15 +16,20 @@ Including another URLconf
 """
 from django.urls import path
 from django.contrib import admin
-from Scheduler.views import *
 
+from Scheduler import views
+from Scheduler.views import *
+from django.shortcuts import redirect
 
 urlpatterns = [
-    # Might need to be removed
+    path('', lambda request: redirect('login')),  # Redirect to the login page
     path('admin/', admin.site.urls),
     path('login/', Login.as_view(), name='login'),
-    path('dashboard/', Dashboard.as_view(), name="dashboard"),
-    path('account/editPersonalInfo/', EditPersonalInfo.as_view(), name='editPersonalInfo'),
-    path('account/', Account.as_view(), name='account'),
-    path('timeOff/', TimeOff.as_view(), name='timeoff')
+    path('dashboard/dashboard', Dashboard.as_view(), name="dashboard"),
+    path('dashboard/allUsers/', AllUsers.as_view(), name="viewAllUsers"),
+    path('serverScore/', ServerScore.as_view(), name="serverScore"),
+    path('dashboard/account/editPersonalInfo/', EditPersonalInfo.as_view(), name='editPersonalInfo'),
+    path('dashboard/account/', Account.as_view(), name='account'),
+    path('dashboard/account/updateAvailability/', UpdateAvailability.as_view(), name='updateAvailability'),
+
 ]

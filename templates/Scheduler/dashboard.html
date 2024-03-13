@@ -3,36 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Scheduling Dashboard</title>
+    <title>Login Page</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static "stylesheets/styles.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/dashboard.css' %}">
 </head>
 <body>
-    <div class="navbar">
-        <a href="{% url 'dashboard' %}">Restaurant</a>
-        <a href="{% url 'dashboard' %}">Schedule</a>
-        <a href="{% url 'dashboard' %}">Notifications</a>
-        <a href="{% url 'account' %}">Account</a>
-        <a href="{% url 'login' %}">Logout</a>
+  <div class="container">
+    <nav>
+      <div class="navbar">
+        <div class="logo">
+          <h1>Restaurant Name</h1>
+        </div>
+        <ul>
+          <li><a href="dashboard">
+            <i class="fas fa-user"></i>
+            <span class="nav-item">Dashboard</span>
+          </a>
+          </li>
+          <li><a href="#">
+            <i class="fas fa-chart-bar"></i>
+            <span class="nav-item">Schedule</span>
+          </a>
+          </li>
+          <li><a href="account">
+            <i class="fas fa-tasks"></i>
+            <span class="nav-item">Account</span>
+          </a>
+          </li>
+          <li><a href="#">
+            <i class="fab fa-dochub"></i>
+            <span class="nav-item">Notifications</span>
+          </a>
+          </li>
+            <li><a href="allUsers">
+            <i class="fab fa-dochub"></i>
+            <span class="nav-item">View all users</span>
+          </a>
+          </li>
+          <li><a href="{% url 'login' %}">Logout</a>
+            <i class="fas fa-sign-out-alt"></i>
+          </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="main">
+      <div class="main-top">
+        <p>ShiftMaster</p>
+      </div>
+      <div class="main-body">
+        <h1>Dashboard</h1>
+
+ <div class="job_card">
+        <div class="job_details">
+          <div class="text">
+            <h2>Announcements</h2>
+            <span>No new announcements</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <p>Upcoming Shifts</p>
+      </div>
+
+      <div class="job_card">
+        <div class="job_details">
+          <div class="text">
+            <h2>Sunday</h2>
+            <span>Server</span>
+          </div>
+        </div>
+        <div class="job_salary"><!hours>
+          <h4>8 A.M to 1 P.M</h4>
+          <span>5 hours</span>
+        </div>
+      </div>
+
+                <div class="job_card">
+        <div class="job_details">
+          <div class="text">
+            <h2>Monday</h2>
+            <span>Server</span>
+          </div>
+        </div>
+        <div class="job_salary"><!hours>
+          <h4>8 A.M to 1 P.M</h4>
+          <span>5 hours</span>
+        </div>
+      </div>
+
+          <div class="job_card">
+        <div class="job_details">
+          <div class="text">
+            <h2>Tuesday</h2>
+            <span>Server</span>
+          </div>
+        </div>
+        <div class="job_salary"><!hours>
+          <h4>1 P.M to 6 P.M</h4>
+          <span>5 hours</span>
+        </div>
+      </div>
+
+                <div class="job_card">
+        <div class="job_details">
+          <div class="text">
+            <h2>Wednesday</h2>
+            <span>No Shifts scheduled</span>
+          </div>
+        </div>
+        <div class="job_salary"><!hours>
+          <h4>-----</h4>
+          <span>0 hours</span>
+        </div>
+      </div>
+
+                <div class="job_card">
+        <div class="job_details">
+          <div class="text">
+            <h2>Thursday</h2>
+            <span>No shifts scheduled</span>
+          </div>
+        </div>
+        <div class="job_salary"><!hours>
+          <h4>-----</h4>
+          <span>0 hours</span>
+        </div>
+      </div>
+
+          <div class="job_card">
+        <div class="job_details">
+          <div class="text">
+            <h2>Friday</h2>
+            <span>No shifts scheduled</span>
+          </div>
+        </div>
+        <div class="job_salary"><!hours>
+          <h4>-----</h4>
+          <span>0 hours</span>
+        </div>
+      </div>
+
+          <div class="job_card">
+        <div class="job_details">
+          <div class="text">
+            <h2>Saturday</h2>
+            <span>Server</span>
+          </div>
+        </div>
+        <div class="job_salary"><!hours>
+          <h4>8 A.M to 1 P.M</h4>
+          <span>5 hours</span>
+        </div>
+      </div>
+
     </div>
-    <div class="ShiftsToday">
-        <!-- if(has shift today) display shift else display "no shift today" -->
-         <h2>Shifts Today</h2>
-        {% if has_shift_today %}
-        <!-- Display today's shift details -->
-        {% else %}
-        <p>No shifts today.</p>
-        {% endif %}
-    </div>
-    <div class="ShiftsUpcoming">
-        <!-- Upcoming shifts section goes here -->
-         <h2>Upcoming Shifts</h2>
-        
-        <!-- Upcoming shifts details go here -->
-    </div>
-    <div class="ShiftPool">
-        <!-- Announcements section goes here -->
-         <h2>Shift Pool</h2>
-    </div>
+    </section>
+  </div>
+
 </body>
-</html>
+</html></span>

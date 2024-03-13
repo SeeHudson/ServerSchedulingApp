@@ -25,9 +25,11 @@ urlpatterns = [
     path('', lambda request: redirect('login')),  # Redirect to the login page
     path('admin/', admin.site.urls),
     path('login/', Login.as_view(), name='login'),
-    path('dashboard/', Dashboard.as_view(), name="dashboard"),
-    path('viewAllUsers/', viewAllUsers.as_view(), name="viewAllUsers"),
-    path('serverScore/', serverScore.as_view(), name="serverScore"),
-    path('account/editPersonalInfo/', EditPersonalInfo.as_view(), name='editPersonalInfo'),
-    path('account/', Account.as_view(), name='account')
+    path('dashboard/dashboard', Dashboard.as_view(), name="dashboard"),
+    path('dashboard/allUsers/', AllUsers.as_view(), name="viewAllUsers"),
+    path('serverScore/', ServerScore.as_view(), name="serverScore"),
+    path('dashboard/account/editPersonalInfo/', EditPersonalInfo.as_view(), name='editPersonalInfo'),
+    path('dashboard/account/', Account.as_view(), name='account'),
+    path('dashboard/account/updateAvailability/', UpdateAvailability.as_view(), name='updateAvailability'),
 
+]

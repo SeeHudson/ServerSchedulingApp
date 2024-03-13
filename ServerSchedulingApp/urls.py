@@ -25,5 +25,6 @@ urlpatterns = [
     path('login/', Login.as_view(), name='login'),
     path('dashboard/', Dashboard.as_view(), name="dashboard"),
     path('account/editPersonalInfo/', EditPersonalInfo.as_view(), name='editPersonalInfo'),
-    path('account/', Account.as_view(), name='account')
+    path('account/', Account.as_view(), name='account'),
+    path('timeOff/', TimeOff.as_view(), name='timeoff')
 ]

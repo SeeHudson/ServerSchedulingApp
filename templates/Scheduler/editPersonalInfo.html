@@ -56,7 +56,7 @@
     <!--Buttons-->
     <input type="submit" class="btn btn-primary" value="Submit">
     {% if account.get_primary_key == current_user.get_primary_key %}
-        <a class="btn btn-primary" href="{% url 'dashboard' %}">Cancel</a>
+        <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
     {% else %}
         <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
     {% endif %}

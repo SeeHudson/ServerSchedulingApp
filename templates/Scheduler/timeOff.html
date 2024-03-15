@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Request Time Off</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "stylesheets/styles.css" %}">
+</head>
+<body>
+<div class="navbar">
+        <a href="{% url 'dashboard' %}">Restaurant</a>
+        <a href="{% url 'dashboard' %}">Schedule</a>
+        <a href="{% url 'dashboard' %}">Notifications</a>
+        <a href="{% url 'account' %}">Account</a>
+        <a href="{% url 'login' %}">Logout</a>
+</div>
+<form method = "post">
+    {% csrf_token %}
+    <h3>Request Time Off</h3>
+    <div class="form-group"> <!--Start Date-->
+        <label for="start_date" class="col-sm-3 col-form-label"><strong>Start Date</strong></label>
+        <input type="date" class="form-control" id="start_date" name="start_date">
+    </div>
+        <br>
+    <div class="form-group"> <!--End Date-->
+        <label for="end_date" class="col-sm-3 col-form-label"><strong>End Date</strong></label>
+        <input type="date" class="form-control" id="end_date" name="end_date">
+    </div>
+        <br>
+    <div class="form-group"> <!--Reasoning-->
+        <label for="time_off_reason" class="col-sm-3 col-form-label"><strong>Reasoning</strong></label>
+        <input type="text" class="form-control" id="time_off_reason" name="time_off_reason"  required placeholder="Reason for taking off of work.">
+    </div>
+    <!--Buttons-->
+    <input type="submit" class="btn btn-primary" value="Submit">
+    {% if account.get_primary_key == current_user.get_primary_key %}
+        <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
+    {% else %}
+        <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
+    {% endif %}
+</form>
+</body>
+</html>

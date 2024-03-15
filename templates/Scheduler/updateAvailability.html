@@ -4,36 +4,95 @@
     <meta charset="UTF-8">
     <title>Update Availability</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'stylesheets/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/updateAvailability.css' %}">
+    <style>
+        .checkbox-group {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        .day-container {
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 <body>
-<div class="navbar">
-    <a href="{% url 'dashboard' %}">Restaurant</a>
-    <a href="{% url 'dashboard' %}">Schedule</a>
-    <a href="{% url 'dashboard' %}">Notifications</a>
-    <a href="{% url 'account' %}">Account</a>
-    <a href="{% url 'login' %}">Logout</a>
-</div>
-
-<div class="content">
-    <h2>Update Your Availability</h2>
-    <form method="post">
-    {% csrf_token %}
-    {% for day in days %}
-        <div class="form-group">
-            <label>{{ day }}:</label><br>
-            <input type="checkbox" id="{{ day }}Open" name="{{ day }}Availability" value="Open">
-            <label for="{{ day }}Open">Open</label><br>
-
-            <input type="checkbox" id="{{ day }}Mid" name="{{ day }}Availability" value="Mid">
-            <label for="{{ day }}Mid">Mid</label><br>
-
-            <input type="checkbox" id="{{ day }}Close" name="{{ day }}Availability" value="Close">
-            <label for="{{ day }}Close">Close</label><br>
+<div class="container">
+<nav>
+  <div class="navbar">
+    <div class="logo">
+      <h1>Restaurant Name</h1>
+    </div>
+    <ul>
+      <li>  <a href="{% url 'dashboard' %}">
+        <i class="fas fa-user"></i>
+        <span class="nav-item">Dashboard</span>
+      </a>
+      </li>
+      <li><a href="#">
+        <i class="fas fa-chart-bar"></i>
+        <span class="nav-item">Schedule</span>
+      </a>
+      </li>
+      <li><a href="{% url 'account' %}">
+        <i class="fas fa-tasks"></i>
+        <span class="nav-item">Account</span>
+      </a>
+      </li>
+      <li><a href="#">
+        <i class="fab fa-dochub"></i>
+        <span class="nav-item">Notifications</span>
+      </a>
+      </li>
+        <li><a href="allUsers">
+        <i class="fab fa-dochub"></i>
+        <span class="nav-item">View all users</span>
+      </a>
+      </li>
+      <li><a href="{% url 'login' %}">Logout</a>
+        <i class="fas fa-sign-out-alt"></i>
+      </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+    <section class="main">
+        <div class="main-top">
+            <p>ShiftMaster</p>
         </div>
-    {% endfor %}
-    <button type="submit" class="btn btn-primary">Update Availability</button>
-</form>
+        <div class="main-body">
+            <h1>Update Availability</h1>
+
+            <div class="content">
+                <form method="post">
+                    {% csrf_token %}
+                    {% for day in days %}
+                        <div class="day-container">
+                            <label>{{ day }}:</label><br>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="{{ day }}Open" name="{{ day }}Availability" value="Open">
+                                <label for="{{ day }}Open">Open</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="{{ day }}Mid" name="{{ day }}Availability" value="Mid">
+                                <label for="{{ day }}Mid">Mid</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="{{ day }}Close" name="{{ day }}Availability" value="Close">
+                                <label for="{{ day }}Close">Close</label>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary">Update Availability</button>
+                {% if account.get_primary_key == current_user.get_primary_key %}
+        <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
+    {% else %}
+        <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
+    {% endif %}
+                </form>
+            </div>
+        </div>
+    </section>
 </div>
 </body>
 </html>
+

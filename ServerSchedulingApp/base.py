@@ -42,7 +42,7 @@ def insert_data():
     user3 = User.objects.create_user(username='employee_user3', role='EMPLOYEE', first_name='Jaden',
                                      last_name='Wallace', restaurant=restaurant)
     user4 = User.objects.create_user(username='employee_user4', role='EMPLOYEE', first_name='Tiffany', last_name='Liu', restaurant=restaurant)
-    user_manager = User.objects.create_user(username='manager_user', role='MANAGER', first_name='Alice',
+    user_manager = User.objects.create_user(username='manager_user', password='BAS', role='MANAGER', first_name='Alice',
                                             last_name='Smith', restaurant=restaurant)
 
     # Create Employee and Manager

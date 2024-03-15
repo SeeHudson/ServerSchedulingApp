@@ -1,5 +1,6 @@
 from django.db import models
-
+from .Employee import Employee
+from .Shift import Shift
 
 class Restaurant(models.Model):
     restaurant_id = models.AutoField(primary_key=True)
@@ -17,7 +18,8 @@ class Restaurant(models.Model):
 
     def get_all_shifts(self):
         employees = self.get_all_employees()
-        shifts = []
-        for employee in employees:
-            shifts += employee.get_all_shifts_for_employee()
+        shifts = Shift.objects.none()
+        for user in employees:
+            employee_shifts = Employee.objects.get(user=user).get_all_shifts_for_employee()
+            shifts = shifts | employee_shifts
         return shifts

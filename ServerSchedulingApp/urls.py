@@ -14,25 +14,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from Scheduler.views import *
 from django.urls import path
 from django.contrib import admin
-from Scheduler.views import Account, Dashboard, EditPersonalInfo, Login
-from Scheduler.views.creation import Creation
-from Scheduler.views.updateAvailablilty import UpdateAvailability
 
+from Scheduler import views
+from Scheduler.views import *
+from django.shortcuts import redirect
 
 urlpatterns = [
-    # Might need to be removed
+    path('', lambda request: redirect('login')),  # Redirect to the login page
     path('admin/', admin.site.urls),
-    path('', Login.as_view(), name='login'),
-    path('dashboard/', Dashboard.as_view(), name="dashboard"),
-    path('display_all_shifts/', Display_All_Shifts.as_view(), name='display_all_shifts'),
-    path('account/editPersonalInfo/', EditPersonalInfo.as_view(), name='editPersonalInfo'),
-    path('account/', Account.as_view(), name='account'),
-    path('serverscore/', ServerScore.as_view(), name='serverscore'),
+    path('login/', Login.as_view(), name='login'),
+    path('dashboard/dashboard', Dashboard.as_view(), name="dashboard"),
+    path('dashboard/allUsers/', AllUsers.as_view(), name="viewAllUsers"),
+    path('serverScore/', ServerScore.as_view(), name="serverScore"),
     path('dashboard/account/editPersonalInfo/', EditPersonalInfo.as_view(), name='editPersonalInfo'),
-    path('dashboard/account/accountcreation/', Creation.as_view(), name='creation'),
-    path('dashboard/account/updateavailability/', UpdateAvailability.as_view(), name='updateAvailability'),
-    path('dashboard/account/', Account.as_view(), name='account')
+    path('dashboard/account/', Account.as_view(), name='account'),
+    path('dashboard/account/updateAvailability/', UpdateAvailability.as_view(), name='updateAvailability'),
+
 ]

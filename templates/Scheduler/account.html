@@ -9,10 +9,9 @@
 <body>
     <div class="navbar">
         <a href="{% url 'dashboard' %}">Restaurant</a>
-        <a href="{% url 'display_all_shifts' %}">Schedule</a>
+        <a href="{% url 'dashboard' %}">Schedule</a>
         <a href="{% url 'dashboard' %}">Notifications</a>
         <a href="{% url 'account' %}">Account</a>
-        <a href="{% url 'serverscore' %}">Server Score</a>
         <a href="{% url 'login' %}">Logout</a>
     </div>
     <div class="AccountInformation">
@@ -33,13 +32,7 @@
         <p><pre>    Thursday (##/##): </pre></p>
         <p><pre>    Friday (##/##): </pre></p>
         <p><pre>    Saturday (##/##): </pre></p>
-        
-    </div>
-        <button onclick="location.href = 'updateavailability/';" id="updateAvailability" class="float-left submit-button" >Edit</button>
-    </div>
-    <div class="AccountCreation">
-        <p>Account Creation</p>
-        <button onclick="location.href = 'accountcreation/';" id="createAccount" class="float-left submit-button" >Edit</button>
+        <button onclick="location.href = 'updateAvailability';" id="editAvailability" class="float-left submit-button" >Edit</button>
     </div>
 </body>
 </html>

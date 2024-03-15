@@ -31,5 +31,6 @@ urlpatterns = [
     path('dashboard/account/editPersonalInfo/', EditPersonalInfo.as_view(), name='editPersonalInfo'),
     path('dashboard/account/', Account.as_view(), name='account'),
     path('dashboard/account/updateAvailability/', UpdateAvailability.as_view(), name='updateAvailability'),
+    path('dashboard/account/timeOff/', TimeOff.as_view(), name='timeOff')
 
 ]

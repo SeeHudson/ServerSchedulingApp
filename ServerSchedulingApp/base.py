@@ -32,7 +32,7 @@ def reset_app(app_name):
 
 def insert_data():
     # Create Users
-    user1 = User.objects.create_user(username='employee_user1', role='EMPLOYEE', first_name='John', last_name='Doe')
+    user1 = User.objects.create_user(username='employee_user1', password='BlahBlah', role='EMPLOYEE', first_name='John', last_name='Doe')
     user2 = User.objects.create_user(username='employee_user2', role='EMPLOYEE', first_name='Sophia', last_name='Curtis')
     user3 = User.objects.create_user(username='employee_user3', role='EMPLOYEE', first_name='Jaden', last_name='Wallace')
     user4 = User.objects.create_user(username='employee_user4', role='EMPLOYEE', first_name='Tiffany', last_name='Liu')
@@ -40,10 +40,10 @@ def insert_data():
                                             last_name='Smith')
 
     # Create Employee and Manager
-    employee1 = Employee.objects.create(user=user1, score=4)
-    employee2 = Employee.objects.create(user=user2, score=2)
-    employee3 = Employee.objects.create(user=user3, score=2)
-    employee4 = Employee.objects.create(user=user4, score=2)
+    employee1 = Employee.objects.create(user=user1, score1=4, score2=3, score3=5, score4=2, score5=4, average_score=3.6)
+    employee2 = Employee.objects.create(user=user2, score1=3, score2=4, score3=5, score4=3, score5=4, average_score=3.8)
+    employee3 = Employee.objects.create(user=user3, score1=5, score2=4, score3=5, score4=4, score5=5, average_score=4.6)
+    employee4 = Employee.objects.create(user=user4, score1=4, score2=5, score3=5, score4=4, score5=5, average_score=4.6)
     manager = Manager.objects.create(user=user_manager)
 
     # Create Shifts

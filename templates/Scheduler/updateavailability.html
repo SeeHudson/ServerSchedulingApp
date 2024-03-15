@@ -12,29 +12,28 @@
     <a href="{% url 'dashboard' %}">Schedule</a>
     <a href="{% url 'dashboard' %}">Notifications</a>
     <a href="{% url 'account' %}">Account</a>
-    <a href="{% url 'serverscore' %}">Server Score</a>
     <a href="{% url 'login' %}">Logout</a>
 </div>
 
 <div class="content">
     <h2>Update Your Availability</h2>
     <form method="post">
-        {% csrf_token %}
-        {% for day in days %}
-            <div class="form-group">
-                <label>{{ day }}:</label><br>
-                <input type="checkbox" id="{{ day }}Open" name="{{ day }}Availability" value="Open">
-                <label for="{{ day }}Open">Open</label><br>
+    {% csrf_token %}
+    {% for day in days %}
+        <div class="form-group">
+            <label>{{ day }}:</label><br>
+            <input type="checkbox" id="{{ day }}Open" name="{{ day }}Availability" value="Open">
+            <label for="{{ day }}Open">Open</label><br>
 
-                <input type="checkbox" id="{{ day }}Mid" name="{{ day }}Availability" value="Mid">
-                <label for="{{ day }}Mid">Mid</label><br>
+            <input type="checkbox" id="{{ day }}Mid" name="{{ day }}Availability" value="Mid">
+            <label for="{{ day }}Mid">Mid</label><br>
 
-                <input type="checkbox" id="{{ day }}Close" name="{{ day }}Availability" value="Close">
-                <label for="{{ day }}Close">Close</label><br>
-            </div>
-        {% endfor %}
-        <button type="submit" class="btn btn-primary">Update Availability</button>
-    </form>
+            <input type="checkbox" id="{{ day }}Close" name="{{ day }}Availability" value="Close">
+            <label for="{{ day }}Close">Close</label><br>
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Update Availability</button>
+</form>
 </div>
 </body>
 </html>

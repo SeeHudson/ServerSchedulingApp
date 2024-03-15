@@ -16,8 +16,7 @@ class Shift(models.Model):
 
     day = models.CharField(max_length=2, choices=Day_of_Week)
     # Maybe use TimeInput widget in forms
-    startTime = models.TimeField(_('Start Time'))
-    endTime = models.TimeField(_('End Time'))
+    shift_type = models.CharField(max_length=10, choices=(('open', 'Open'), ('mid', 'Mid'), ('close', 'Close')))
     # Many-to-Many relationship with Employee
     employees = models.ManyToManyField(Employee, through='EmployeeShift', related_name='shifts')
 

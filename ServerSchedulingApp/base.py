@@ -7,7 +7,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ServerSchedulingApp.settings')
 django.setup()
 
 from Scheduler.models import *
-from datetime import time, datetime
 from django.core.management import call_command
 from django.db import connection
 
@@ -31,13 +30,20 @@ def reset_app(app_name):
 
 
 def insert_data():
+    # Create Restaurant
+    restaurant = Restaurant.objects.create(restaurant_name='Grand Cafe', address='1234 Main St', city='San Francisco', zip='94111')
+
     # Create Users
-    user1 = User.objects.create_user(username='employee_user1', password='BlahBlah', role='EMPLOYEE', first_name='John', last_name='Doe')
-    user2 = User.objects.create_user(username='employee_user2', role='EMPLOYEE', first_name='Sophia', last_name='Curtis')
-    user3 = User.objects.create_user(username='employee_user3', role='EMPLOYEE', first_name='Jaden', last_name='Wallace')
-    user4 = User.objects.create_user(username='employee_user4', role='EMPLOYEE', first_name='Tiffany', last_name='Liu')
+    user1 = User.objects.create_user(username='employee_user1', password='BlahBlah', role='EMPLOYEE', first_name='John',
+                                     last_name='Doe', restaurant=restaurant)
+
+    user2 = User.objects.create_user(username='employee_user2', role='EMPLOYEE', first_name='Sophia',
+                                     last_name='Curtis', restaurant=restaurant)
+    user3 = User.objects.create_user(username='employee_user3', role='EMPLOYEE', first_name='Jaden',
+                                     last_name='Wallace', restaurant=restaurant)
+    user4 = User.objects.create_user(username='employee_user4', role='EMPLOYEE', first_name='Tiffany', last_name='Liu', restaurant=restaurant)
     user_manager = User.objects.create_user(username='manager_user', role='MANAGER', first_name='Alice',
-                                            last_name='Smith')
+                                            last_name='Smith', restaurant=restaurant)
 
     # Create Employee and Manager
     employee1 = Employee.objects.create(user=user1, score1=4, score2=3, score3=5, score4=2, score5=4, average_score=3.6)
@@ -47,15 +53,15 @@ def insert_data():
     manager = Manager.objects.create(user=user_manager)
 
     # Create Shifts
-    shift1 = Shift.objects.create(day='Mo', startTime=time(9, 0), endTime=time(13, 0))
-    shift2 = Shift.objects.create(day='Mo', startTime=time(13, 0), endTime=time(16, 0))
-    shift3 = Shift.objects.create(day='Tu', startTime=time(9, 0), endTime=time(13, 0))
-    shift4 = Shift.objects.create(day='Tu', startTime=time(14, 0), endTime=time(17, 0))
-    shift5 = Shift.objects.create(day='We', startTime=time(9, 0), endTime=time(13, 0))
-    shift6 = Shift.objects.create(day='We', startTime=time(14, 0), endTime=time(19, 0))
-    shift7 = Shift.objects.create(day='Th', startTime=time(9, 0), endTime=time(13, 0))
-    shift8 = Shift.objects.create(day='Th', startTime=time(14, 0), endTime=time(19, 0))
-    shift9 = Shift.objects.create(day='Fr', startTime=time(14, 0), endTime=time(19, 0))
+    shift1 = Shift.objects.create(day='Mo', shift_type='Open')
+    shift2 = Shift.objects.create(day='Mo', shift_type='Mid')
+    shift3 = Shift.objects.create(day='Tu', shift_type='Open')
+    shift4 = Shift.objects.create(day='Tu', shift_type='Mid')
+    shift5 = Shift.objects.create(day='We', shift_type='Open')
+    shift6 = Shift.objects.create(day='We', shift_type='Close')
+    shift7 = Shift.objects.create(day='Th', shift_type='Open')
+    shift8 = Shift.objects.create(day='Th', shift_type='Mid')
+    shift9 = Shift.objects.create(day='Fr', shift_type='Open')
 
     # Assign Shifts to Employees
     EmployeeShift.objects.create(user=employee1, shift=shift1)

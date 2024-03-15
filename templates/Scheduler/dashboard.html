@@ -12,7 +12,7 @@
     <nav>
       <div class="navbar">
         <div class="logo">
-          <h1>Restaurant Name</h1>
+          <h1>{{ restaurant_name }}</h1>
         </div>
         <ul>
           <li><a href="dashboard">
@@ -72,12 +72,24 @@
         <div class="job_details">
           <div class="text">
             <h2>Sunday</h2>
-            <span>Server</span>
+            <span>
+                {% for shift in sunday_shifts %}
+                    {% for employee in shift.employees.all %}
+                        {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    {% empty %}
+                        No shifts scheduled
+                {% endfor %}
+            </span>
           </div>
         </div>
         <div class="job_salary"><!hours>
-          <h4>8 A.M to 1 P.M</h4>
-          <span>5 hours</span>
+          <h4>
+              {% for shift in sunday_shifts %}
+                {{ shift.shift_type }}
+              {% endfor %}
+          </h4>
+{#          <span>0 hours</span>#}
         </div>
       </div>
 
@@ -85,12 +97,23 @@
         <div class="job_details">
           <div class="text">
             <h2>Monday</h2>
-            <span>Server</span>
+            <span>
+                {% for shift in monday_shifts %}
+                    {% for employee in shift.employees.all %}
+                        {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    {% empty %}
+                        No shifts scheduled
+                {% endfor %}
+            </span>
           </div>
         </div>
         <div class="job_salary"><!hours>
-          <h4>8 A.M to 1 P.M</h4>
-          <span>5 hours</span>
+          <h4>
+              {% for shift in monday_shifts %}
+                {{ shift.shift_type }}
+              {% endfor %}</h4>
+{#          <span>5 hours</span>#}
         </div>
       </div>
 
@@ -98,12 +121,24 @@
         <div class="job_details">
           <div class="text">
             <h2>Tuesday</h2>
-            <span>Server</span>
+            <span>
+                {% for shift in tuesday_shifts %}
+                    {% for employee in shift.employees.all %}
+                        {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    {% empty %}
+                        No shifts scheduled
+                {% endfor %}
+            </span>
           </div>
         </div>
         <div class="job_salary"><!hours>
-          <h4>1 P.M to 6 P.M</h4>
-          <span>5 hours</span>
+          <h4>
+              {% for shift in tuesday_shifts %}
+                {{ shift.shift_type }}
+              {% endfor %}
+          </h4>
+{#          <span>5 hours</span>#}
         </div>
       </div>
 
@@ -111,12 +146,24 @@
         <div class="job_details">
           <div class="text">
             <h2>Wednesday</h2>
-            <span>No Shifts scheduled</span>
+            <span>
+                {% for shift in wednesday_shifts %}
+                    {% for employee in shift.employees.all %}
+                        {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    {% empty %}
+                        No shifts scheduled
+                {% endfor %}
+            </span>
           </div>
         </div>
         <div class="job_salary"><!hours>
-          <h4>-----</h4>
-          <span>0 hours</span>
+          <h4>
+              {% for shift in wednesday_shifts %}
+                {{ shift.shift_type }}
+              {% endfor %}
+          </h4>
+{#          <span>0 hours</span>#}
         </div>
       </div>
 
@@ -124,12 +171,24 @@
         <div class="job_details">
           <div class="text">
             <h2>Thursday</h2>
-            <span>No shifts scheduled</span>
+            <span>
+                {% for shift in thursday_shifts %}
+                    {% for employee in shift.employees.all %}
+                        {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    {% empty %}
+                        No shifts scheduled
+                {% endfor %}
+            </span>
           </div>
         </div>
         <div class="job_salary"><!hours>
-          <h4>-----</h4>
-          <span>0 hours</span>
+          <h4>
+                {% for shift in thursday_shifts %}
+                    {{ shift.shift_type }}
+                {% endfor %}
+          </h4>
+{#          <span>0 hours</span>#}
         </div>
       </div>
 
@@ -137,12 +196,24 @@
         <div class="job_details">
           <div class="text">
             <h2>Friday</h2>
-            <span>No shifts scheduled</span>
+            <span>
+                {% for shift in friday_shifts %}
+                    {% for employee in shift.employees.all %}
+                        {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    {% empty %}
+                        No shifts scheduled
+                {% endfor %}
+            </span>
           </div>
         </div>
         <div class="job_salary"><!hours>
-          <h4>-----</h4>
-          <span>0 hours</span>
+          <h4>
+                {% for shift in friday_shifts %}
+                    {{ shift.shift_type }}
+                {% endfor %}
+          </h4>
+{#          <span>0 hours</span>#}
         </div>
       </div>
 
@@ -150,12 +221,24 @@
         <div class="job_details">
           <div class="text">
             <h2>Saturday</h2>
-            <span>Server</span>
+            <span>
+                {% for shift in friday_shifts %}
+                    {% for employee in shift.employees.all %}
+                        {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    {% empty %}
+                        No shifts scheduled
+                {% endfor %}
+            </span>
           </div>
         </div>
         <div class="job_salary"><!hours>
-          <h4>8 A.M to 1 P.M</h4>
-          <span>5 hours</span>
+          <h4>
+                {% for shift in saturday_shifts %}
+                    {{ shift.shift_type }}
+                {% endfor %}
+          </h4>
+{#          <span>5 hours</span>#}
         </div>
       </div>
 

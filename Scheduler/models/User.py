@@ -12,4 +12,4 @@ class User(AbstractUser):
     restaurant = models.ForeignKey('Restaurant', on_delete=models.SET_NULL, null=True, related_name='users')
 
     # Create role when user is created
-
+    #Might need to add phone number, address

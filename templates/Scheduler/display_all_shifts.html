@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Page</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/dashboard.css' %}">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f7f6;
+        color: #333;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .week-header, .week-content {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .day-header, .day-content {
+        flex: 1;
+        padding: 10px;
+        border-right: 1px solid #ddd;
+    }
+
+    .day-header {
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .day-content:last-child, .day-header:last-child {
+        border-right: none;
+    }
+
+    .shift {
+        background-color: #e3e4e6;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+    }
+
+    .shift:hover {
+        background-color: #d1d2d4;
+    }
+</style>
+<body>
+<div class="container">
+    <nav>
+        <div class="navbar">
+            <div class="logo">
+                <h1>ShiftMaster</h1> <!-- Assuming 'ShiftMaster' is your application name -->
+            </div>
+            <ul>
+                <li><a href="{% url 'dashboard' %}">
+                    <span class="nav-item">Dashboard</span>
+                </a></li>
+                <li><a href="{% url 'displayAllShifts' %}" class="active">
+                    <span class="nav-item">Schedule</span>
+                </a></li>
+                <li><a href="{% url 'account' %}">
+                    <span class="nav-item">Account</span>
+                </a></li>
+                <li><a href="#">
+                    <span class="nav-item">Notifications</span>
+                </a></li>
+                <li><a href="{% url 'viewAllUsers' %}">
+                    <span class="nav-item">View All Users</span>
+                </a></li>
+                <li><a href="{% url 'login' %}">
+                    <span class="nav-item">Logout</span>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+<section class="main">
+      <div class="main-top">
+        <p>ShiftMaster</p>
+      </div>
+    
+    <div class="week-content">
+        <div class="day-content">
+        <div class="day-header">Monday</div>
+            {% for shift in monday_shifts %}
+                <div class="shift">
+                    <div><strong>{{ shift.shift_type }}</strong></div>
+                    {% for employee in shift.employees.all %}
+                        {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="day-content">
+            <div class="day-header">Tuesday</div>
+            {% for shift in tuesday_shifts %}
+                <div class="shift">
+                    <div><strong>{{ shift.shift_type }}</strong></div>
+                    {% for employee in shift.employees.all %}
+                        {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="day-content">
+            <div class="day-header">Wednesday</div>
+            {% for shift in wednesday_shifts %}
+                <div class="shift">
+                    <div><strong>{{ shift.shift_type }}</strong></div>
+                    {% for employee in shift.employees.all %}
+                        {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="day-content">
+            <div class="day-header">Thursday</div>
+            {% for shift in thursday_shifts %}
+                <div class="shift">
+                    <div><strong>{{ shift.shift_type }}</strong></div>
+                    {% for employee in shift.employees.all %}
+                        {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="day-content">
+            <div class="day-header">Friday</div>
+            {% for shift in friday_shifts %}
+                <div class="shift">
+                    <div><strong>{{ shift.shift_type }}</strong></div>
+                    {% for employee in shift.employees.all %}
+                        {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="day-content">
+            <div class="day-header">Saturday</div>
+            {% for shift in saturday_shifts %}
+                <div class="shift">
+                    <div><strong>{{ shift.shift_type }}</strong></div>
+                    {% for employee in shift.employees.all %}
+                        {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="day-content">
+            <div class="day-header">Sunday</div>
+            {% for shift in sunday_shifts %}
+                <div class="shift">
+                    <div><strong>{{ shift.shift_type }}</strong></div>
+                    {% for employee in shift.employees.all %}
+                        {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

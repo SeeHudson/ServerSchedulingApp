@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import View
 from django.contrib.auth.forms import AuthenticationForm
+from Scheduler.models.Restaurant import Restaurant
 
 
 class Login(View):
@@ -20,6 +21,14 @@ class Login(View):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
+
+                # Get Restaurant
+                restaurant = user.restaurant
+                request.session['restaurant_id'] = restaurant.restaurant_id
+
+                # Get and set session restaurant name
+                restaurant_name = restaurant.restaurant_name
+                request.session['restaurant_name'] = restaurant_name
                 # Redirect to a success page.
                 return HttpResponseRedirect(reverse('dashboard'))
             else:

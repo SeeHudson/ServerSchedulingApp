@@ -4,7 +4,7 @@ from . import Employee
 
 
 # Have to go over this and availability
-class Timeoff(models.Model):
+class TimeOff(models.Model):
     user = models.ForeignKey(Employee, on_delete=models.CASCADE)
 
     mondayBegin = models.CharField(_('mondayBegin'), max_length=10, blank=True)

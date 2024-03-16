@@ -27,8 +27,7 @@ class Employee(models.Model):
         MaxValueValidator(5),
         MinValueValidator(0)
     ])
-    average_score = models.FloatField(default = 0)
-
+    average_score = models.FloatField(default=0)
 
     def get_all_shifts_for_employee(self):
         return self.shifts.all()

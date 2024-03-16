@@ -11,7 +11,7 @@
 <nav>
   <div class="navbar">
     <div class="logo">
-      <h1>Restaurant Name</h1>
+      <h1>{{ restaurant_name }}</h1>
     </div>
     <ul>
       <li>  <a href="{% url 'dashboard' %}">
@@ -68,7 +68,7 @@
         <br>
     <div class="form-group"> <!--Email // Display Only-->
         <label for="email" class="col-sm-3 col-form-label"><strong>Email</strong></label>
-        <p>{{ Employee.get_email }}{{ user.email }}</p>
+        <p>{{ Employee.get_email }}{{ email }}</p>
     </div>
         <br>
     <div class="form-group"> <!--Phone Number-->

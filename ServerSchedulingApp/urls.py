@@ -27,10 +27,12 @@ urlpatterns = [
     path('login/', Login.as_view(), name='login'),
     path('dashboard/dashboard', Dashboard.as_view(), name="dashboard"),
     path('dashboard/allUsers/', AllUsers.as_view(), name="viewAllUsers"),
-    path('serverScore/', ServerScore.as_view(), name="serverScore"),
+    path('dashboard/serverScore/', ServerScore.as_view(), name="serverScore"),
     path('dashboard/account/editPersonalInfo/', EditPersonalInfo.as_view(), name='editPersonalInfo'),
     path('dashboard/account/', Account.as_view(), name='account'),
     path('dashboard/account/updateAvailability/', UpdateAvailability.as_view(), name='updateAvailability'),
-    path('dashboard/account/timeOff/', TimeOff.as_view(), name='timeOff')
+    path('dashboard/account/timeOff/', TimeOff.as_view(), name='timeOff'),
+    path('dashboard/addShifts/', AddShifts.as_view(), name='addShifts'),
+    path('dashboard/displayAllShifts/', Display_All_Shifts.as_view(), name='displayAllShifts'),
 
 ]

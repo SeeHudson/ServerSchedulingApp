@@ -7,90 +7,114 @@
     <link rel="stylesheet" href="{% static "stylesheets/account.css" %}">
 </head>
 <body>
-    <div class="container">
-<nav>
-  <div class="navbar">
-    <div class="logo">
-      <h1>Restaurant Name</h1>
-    </div>
-    <ul>
-      <li>  <a href="{% url 'dashboard' %}">
-        <i class="fas fa-user"></i>
-        <span class="nav-item">Dashboard</span>
-      </a>
-      </li>
-      <li><a href="#">
-        <i class="fas fa-chart-bar"></i>
-        <span class="nav-item">Schedule</span>
-      </a>
-      </li>
-      <li><a href="{% url 'account' %}">
-        <i class="fas fa-tasks"></i>
-        <span class="nav-item">Account</span>
-      </a>
-      </li>
-      <li><a href="#">
-        <i class="fab fa-dochub"></i>
-        <span class="nav-item">Notifications</span>
-      </a>
-      </li>
-        <li><a href="allUsers">
-        <i class="fab fa-dochub"></i>
-        <span class="nav-item">View all users</span>
-      </a>
-      </li>
-      <li><a href="{% url 'login' %}">Logout</a>
-        <i class="fas fa-sign-out-alt"></i>
-      </li>
-    </ul>
-  </div>
-</nav>
+<div class="container">
+    <nav>
+        <div class="navbar">
+            <div class="logo">
+                <h1>{{ restaurant_name }}</h1>
+            </div>
+            <ul>
+                <li><a href="{% url 'dashboard' %}">
+                    <i class="fas fa-user"></i>
+                    <span class="nav-item">Dashboard</span>
+                </a>
+                </li>
+                <li><a href="#">
+                    <i class="fas fa-chart-bar"></i>
+                    <span class="nav-item">Schedule</span>
+                </a>
+                </li>
+                <li><a href="{% url 'account' %}">
+                    <i class="fas fa-tasks"></i>
+                    <span class="nav-item">Account</span>
+                </a>
+                </li>
+                <li><a href="#">
+                    <i class="fab fa-dochub"></i>
+                    <span class="nav-item">Notifications</span>
+                </a>
+                </li>
+                <li><a href={% url 'viewAllUsers' %}>
+                    <i class="fab fa-dochub"></i>
+                    <span class="nav-item">View all users</span>
+                </a>
+                </li>
+                <li><a href="{% url 'login' %}">Logout</a>
+                    <i class="fas fa-sign-out-alt"></i>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <section class="main">
-  <div class="main-top">
-    <p>ShiftMaster</p>
-  </div>
-      <div class="main-body">
-          <div class="content">
-    <h3>Account Information</h3>
-          <p><strong>First Name:</strong> <label for="address" class="col-sm-3 col-form-label"><strong>{{ user.first_name }}</strong></label></p>
-    <p><strong>Last Name:</strong> {{ user.last_name }}</p>
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
-    <p><strong>Address:</strong> {{ user.address }}</p>
-    <p><strong>City:</strong> {{ user.city }}</p>
-    <p><strong>State:</strong> {{ user.state }}</p>
-    <p><strong>Zipcode:</strong> {{ user.zipcode }}</p>
-              <button onclick="location.href = 'editPersonalInfo/';" id="editInfo" class="btn btn-primary" >Edit</button>
-    </div>
-        <div class="content">
-    <div class="Availability">
-        <h3>Availability</h3>
-        <p>Availability for next Schedule: </p>
-        <p><pre>    Sunday (##/##): </pre></p>
-        <p><pre>    Monday (##/##): </pre></p>
-        <p><pre>    Tuesday (##/##): </pre></p>
-        <p><pre>    Wednesday (##/##): </pre></p>
-        <p><pre>    Thursday (##/##): </pre></p>
-        <p><pre>    Friday (##/##): </pre></p>
-        <p><pre>    Saturday (##/##): </pre></p>
-        <button onclick="location.href = 'updateAvailability/';" id="updateAvailability" class="btn btn-primary" >Edit</button>
-    </div>
+        <div class="main-top">
+            <p>ShiftMaster</p>
         </div>
-        <div class="content">
-    <div class="AccountCreation">
-        <h3>Account Creation</h3>
-        <button onclick="location.href = 'accountcreation/';" id="createAccount" class="btn btn-primary" >Edit</button>
-    </div>
-    </div>
+        <div class="main-body">
+            <div class="content">
+                <h3>Account Information</h3>
+                <p><strong>First Name:</strong> <label for="address"
+                                                       class="col-sm-3 col-form-label"><strong>{{ user.first_name }}</strong></label>
+                </p>
+                <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+                <p><strong>Address:</strong> {{ user.address }}</p>
+                <p><strong>City:</strong> {{ user.city }}</p>
+                <p><strong>State:</strong> {{ user.state }}</p>
+                <p><strong>Zipcode:</strong> {{ user.zipcode }}</p>
+                <button onclick="location.href = 'editPersonalInfo/';" id="editInfo" class="btn btn-primary">Edit
+                </button>
+            </div>
+            <div class="content">
+                <div class="Availability">
+                    <h3>Availability</h3>
+                    <p>Availability for next Schedule: </p>
+                    <p>
+                    <pre>    Sunday (##/##): </pre>
+                    </p>
+                    <p>
+                    <pre>    Monday (##/##): </pre>
+                    </p>
+                    <p>
+                    <pre>    Tuesday (##/##): </pre>
+                    </p>
+                    <p>
+                    <pre>    Wednesday (##/##): </pre>
+                    </p>
+                    <p>
+                    <pre>    Thursday (##/##): </pre>
+                    </p>
+                    <p>
+                    <pre>    Friday (##/##): </pre>
+                    </p>
+                    <p>
+                    <pre>    Saturday (##/##): </pre>
+                    </p>
+                    <button onclick="location.href = 'updateAvailability/';" id="updateAvailability"
+                            class="btn btn-primary">Edit
+                    </button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="AccountCreation">
+                    <h3>Account Creation</h3>
+                    <button onclick="location.href = 'accountcreation/';" id="createAccount" class="btn btn-primary">
+                        Edit
+                    </button>
+                </div>
+            </div>
+            <div class="content">
+                <div class="TimeOffRequest">
+                    <h2>Time Off:</h2>
+                    <button onclick="location.href = 'timeOff';" id="requestTimeOff" class="btn btn-primary">Request
+                    </button>
+                    <h3>Approved Time Off:</h3>
+                    <p>No Approved Time Off</p>
+                </div>
+            </div>
         </div>
     </section>
-    </div>
-    <div class="TimeOffRequest">
-        <h2>Time Off:</h2>
-        <button onclick="location.href = 'timeOff';" id="requestTimeOff" class="float-left submit-button" >Request</button>
-        <h3>Approved Time Off:</h3>
-        <p>No Approved Time Off</p>
-    </div>
+</div>
 </body>
 </html>

@@ -8,7 +8,6 @@ from django.contrib.auth.forms import AuthenticationForm
 import Scheduler
 from Scheduler.models import Employee, User
 
-
 class ServerScore(View):
     def get(self, request):
         # try:
@@ -25,7 +24,6 @@ class ServerScore(View):
 
         if request.method == 'GET':
             return render(request, "Scheduler/serverscore.html")
-
 
 def post(self, request):
     score1 = request.POST['score2']

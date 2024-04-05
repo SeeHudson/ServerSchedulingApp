@@ -17,7 +17,6 @@ Including another URLconf
 from django.urls import path
 from django.contrib import admin
 
-from Scheduler import views
 from Scheduler.views import *
 from django.shortcuts import redirect
 

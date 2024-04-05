@@ -138,3 +138,37 @@ h1{
   border: 2px solid dodgerblue;
   transition: 0.4s;
 }
+.week-header, .week-content {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f4f7f6; /* Light background to match the body */
+}
+
+.day-header, .day-content {
+  flex: 1;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.day-header {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.day-content:last-child, .day-header:last-child {
+  border-right: none;
+}
+
+.shift {
+  background-color: #ffd5b5;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.shift:hover {
+  background-color: #ffae5e; /* Hover color to match the navbar gradient */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Slight elevation effect on hover */
+}

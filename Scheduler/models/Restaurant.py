@@ -2,6 +2,7 @@ from django.db import models
 from .Employee import Employee
 from .Shift import Shift
 
+
 class Restaurant(models.Model):
     restaurant_id = models.AutoField(primary_key=True)
     restaurant_name = models.CharField(max_length=100)

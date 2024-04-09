@@ -11,20 +11,12 @@ from Scheduler.models import Employee, User
 
 class ServerScore(View):
     def get(self, request):
-        # try:
-        #     thisUser = AppUser.objects.get(uID=request.session.get('employee'))
-        #     thisUser = AppUserClass(thisUser.uID, thisUser.email, thisUser.password)
-        # except Exception:
-        #     request.session['message'] = "Error Finding User's Page"
-        #     return HttpResponseRedirect(reverse('All Users'))
-        # if request.POST.get('options') == 'Delete':
-        #     thisUser.removeAccount()
-        #     return HttpResponseRedirect(reverse('index'), {"message": "User deleted Successfully"})
-        # if request.GET.get('options') == 'Edit':
-        #     edit = True
-
+        restaurant_name = request.session.get('restaurant_name')
+        context = {
+            'restaurant_name': restaurant_name
+        }
         if request.method == 'GET':
-            return render(request, "Scheduler/serverscore.html")
+            return render(request, "Scheduler/serverscore.html",context)
 
 
 def post(self, request):
@@ -36,4 +28,3 @@ def post(self, request):
     average_score = ((score1 + score2 + score3 + score4 + score5 ) / 5)
 
     return render(request, "Scheduler/serverscore.html")
-                  # {'employee': thisUser, 'isAdmin': isAdmin, 'isUser': isUser, 'message': message})

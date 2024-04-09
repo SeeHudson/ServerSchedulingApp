@@ -8,7 +8,6 @@ from django.contrib.auth.forms import AuthenticationForm
 import Scheduler
 from Scheduler.models import Employee, User
 
-
 class ServerScore(View):
     def get(self, request):
         # try:

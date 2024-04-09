@@ -4,4 +4,4 @@ from django.views import View
 
 class AccountCreation(View):
     def get(self, request):
-        return render(request, "Scheduler/accountcreation.html")
+        return render(request, "Scheduler/accountCreation.html")

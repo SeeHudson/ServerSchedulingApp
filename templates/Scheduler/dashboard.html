@@ -60,9 +60,7 @@
                 {% for shift in monday_shifts %}
                     <div class="shift">
                         <div><strong>{{ shift.shift_type }}</strong></div>
-                        {% for employee in shift.employees.all %}
-                            {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
-                        {% endfor %}
+                            {{ current_user.get_full_name }} 
                     </div>
                 {% endfor %}
             </div>
@@ -71,9 +69,7 @@
                 {% for shift in tuesday_shifts %}
                     <div class="shift">
                         <div><strong>{{ shift.shift_type }}</strong></div>
-                        {% for employee in shift.employees.all %}
-                            {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
-                        {% endfor %}
+                            {{ current_user.get_full_name }} 
                     </div>
                 {% endfor %}
             </div>
@@ -82,9 +78,7 @@
                 {% for shift in wednesday_shifts %}
                     <div class="shift">
                         <div><strong>{{ shift.shift_type }}</strong></div>
-                        {% for employee in shift.employees.all %}
-                            {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
-                        {% endfor %}
+                            {{ current_user.get_full_name }} 
                     </div>
                 {% endfor %}
             </div>
@@ -93,9 +87,7 @@
                 {% for shift in thursday_shifts %}
                     <div class="shift">
                         <div><strong>{{ shift.shift_type }}</strong></div>
-                        {% for employee in shift.employees.all %}
-                            {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
-                        {% endfor %}
+                            {{ current_user.get_full_name }} 
                     </div>
                 {% endfor %}
             </div>
@@ -104,9 +96,7 @@
                 {% for shift in friday_shifts %}
                     <div class="shift">
                         <div><strong>{{ shift.shift_type }}</strong></div>
-                        {% for employee in shift.employees.all %}
-                            {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
-                        {% endfor %}
+                            {{ current_user.get_full_name }} 
                     </div>
                 {% endfor %}
             </div>
@@ -115,9 +105,7 @@
                 {% for shift in saturday_shifts %}
                     <div class="shift">
                         <div><strong>{{ shift.shift_type }}</strong></div>
-                        {% for employee in shift.employees.all %}
-                            {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
-                        {% endfor %}
+                            {{ current_user.get_full_name }}
                     </div>
                 {% endfor %}
             </div>
@@ -126,9 +114,7 @@
                 {% for shift in sunday_shifts %}
                     <div class="shift">
                         <div><strong>{{ shift.shift_type }}</strong></div>
-                        {% for employee in shift.employees.all %}
-                            {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
-                        {% endfor %}
+                            {{ current_user.get_full_name }} 
                     </div>
                 {% endfor %}
             </div>

@@ -42,5 +42,6 @@ class Dashboard(View):
             'friday_shifts': friday_shifts,
             'saturday_shifts': saturday_shifts,
             'sunday_shifts': sunday_shifts,
+            'current_user': current_user,
         }
         return render(request, "Scheduler/dashboard.html", context)

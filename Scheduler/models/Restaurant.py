@@ -1,18 +1,25 @@
 from django.db import models
+from .Employee import Employee
+from .Shift import Shift
 
-# Not sure about this one either
 class Restaurant(models.Model):
-    pass
-    # RESTAURANT_ID = models.AutoField(primary_key=True)
-    # NAME = models.CharField(max_length=100)
-    # ADDRESS = models.CharField(max_length=100)
-    # CITY = models.CharField(max_length=100)
-    # STATE = models.CharField(max_length=100)
-    # ZIP = models.CharField(max_length=100)
-    # PHONE = models.CharField(max_length=100)
-    # EMAIL = models.CharField(max_length=100)
-    # MANAGER_ID = models.ForeignKey('Manager', models.DO_NOTHING, db_column='MANAGER_ID', blank=True, null=True)
-    #
-    # class Meta:
-    #     managed = False
-    #     db_table = 'RESTAURANT'
+    restaurant_id = models.AutoField(primary_key=True)
+    restaurant_name = models.CharField(max_length=100)
+    address = models.CharField(max_length=100, null=True, blank=True)
+    city = models.CharField(max_length=100, null=True, blank=True)
+    state = models.CharField(max_length=100, null=True, blank=True)
+    zip = models.CharField(max_length=100, null=True, blank=True)
+
+    def get_all_employees(self):
+        return self.users.filter(role='EMPLOYEE')
+
+    def get_all_managers(self):
+        return self.users.filter(role='MANAGER')
+
+    def get_all_shifts(self):
+        employees = self.get_all_employees()
+        shifts = Shift.objects.none()
+        for user in employees:
+            employee_shifts = Employee.objects.get(user=user).get_all_shifts_for_employee()
+            shifts = shifts | employee_shifts
+        return shifts

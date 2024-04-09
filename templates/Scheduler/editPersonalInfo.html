@@ -4,19 +4,58 @@
     <meta charset="UTF-8">
     <title>Edit Personal Information</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static "stylesheets/styles.css" %}">
+    <link rel="stylesheet" href="{% static "stylesheets/editPersonalInfo.css" %}">
 </head>
 <body>
-<div class="navbar">
-        <a href="{% url 'dashboard' %}">Restaurant</a>
-        <a href="{% url 'dashboard' %}">Schedule</a>
-        <a href="{% url 'dashboard' %}">Notifications</a>
-        <a href="{% url 'account' %}">Account</a>
-        <a href="{% url 'login' %}">Logout</a>
-</div>
-<form method = "post">
+  <div class="container">
+<nav>
+  <div class="navbar">
+    <div class="logo">
+      <h1>{{ restaurant_name }}</h1>
+    </div>
+    <ul>
+      <li>  <a href="{% url 'dashboard' %}">
+        <i class="fas fa-user"></i>
+        <span class="nav-item">Dashboard</span>
+      </a>
+      </li>
+      <li><a href="#">
+        <i class="fas fa-chart-bar"></i>
+        <span class="nav-item">Schedule</span>
+      </a>
+      </li>
+      <li><a href="{% url 'account' %}">
+        <i class="fas fa-tasks"></i>
+        <span class="nav-item">Account</span>
+      </a>
+      </li>
+      <li><a href="#">
+        <i class="fab fa-dochub"></i>
+        <span class="nav-item">Notifications</span>
+      </a>
+      </li>
+        <li><a href="allUsers">
+        <i class="fab fa-dochub"></i>
+        <span class="nav-item">View all users</span>
+      </a>
+      </li>
+      <li><a href="{% url 'login' %}">Logout</a>
+        <i class="fas fa-sign-out-alt"></i>
+      </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      <section class="main">
+      <div class="main-top">
+        <p>ShiftMaster</p>
+      </div>
+      <div class="main-body">
+        <h1>Edit Personal Information</h1>
+      <div class="content">
+          <form method = "post">
     {% csrf_token %}
-    <h3>Edit Personal Information</h3>
     <div class="form-group"> <!--First Name-->
         <label for="first_name" class="col-sm-3 col-form-label"><strong>First Name</strong></label>
         <input type="text" class="form-control" id="first_name" name="first_name" required placeholder="FIRST NAME HERE" required value="{{ User.get_first_name }}">
@@ -29,7 +68,7 @@
         <br>
     <div class="form-group"> <!--Email // Display Only-->
         <label for="email" class="col-sm-3 col-form-label"><strong>Email</strong></label>
-        <p>{{ Employee.get_email }}</p>
+        <p>{{ Employee.get_email }}{{ email }}</p>
     </div>
         <br>
     <div class="form-group"> <!--Phone Number-->
@@ -38,28 +77,36 @@
     </div>
         <br>
     <div class="form-group"> <!--Address-->
-        <label for="address" class="col-sm-3 col-form-label"><strong>Address</strong></label>
+        <p><label for="address" class="col-sm-3 col-form-label"><strong>Address:</strong></label></p>
         <br>
-        <!--Street Address-->
+        <div class="form-group"><!--Street Address-->
         <label for="address" class="col-sm-3 col-form-label">Street Address</label>
         <input type="address" class="form-control" id="address" name="address" required placeholder="STREET ADDRESS HERE" required value="{{ User.get_address }}">
-        <!--City-->
+        </div>
+        <div class="form-group"><!--City-->
         <label for="city" class="col-sm-3 col-form-label">City</label>
         <input type="city" class="form-control" id="city" name="city" required placeholder="CITY HERE" required value="{{ User.get_city }}">
-        <!--State-->
+        </div>
+        <div class="form-group"><!--State-->
         <label for="state" class="col-sm-3 col-form-label">State</label>
         <input type="state" class="form-control" id="state" name="state" required placeholder="STATE HERE" required value="{{ User.get_state }}">
-        <!--Zipcode-->
+        </div>
+        <div class="form-group"><!--Zipcode-->
         <label for="zipcode" class="col-sm-3 col-form-label">Zipcode</label>
         <input type="zipcode" class="form-control" id="zipcode" name="zipcode" required placeholder="ZIPCODE HERE" requried value="{{ User.get_zipcode }}">
-    </div>
+        </div>
+        </div>
     <!--Buttons-->
     <input type="submit" class="btn btn-primary" value="Submit">
     {% if account.get_primary_key == current_user.get_primary_key %}
-        <a class="btn btn-primary" href="{% url 'dashboard' %}">Cancel</a>
+        <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
     {% else %}
         <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
     {% endif %}
-</form>
+          </form>
+      </div>
+      </div>
+      </section>
+  </div>
 </body>
 </html>

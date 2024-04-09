@@ -57,6 +57,9 @@ body{
   font-size: 20px;
 
 }
+.input-box i:hover {
+  border-color: #6dc9ff; /* Change border color on hover */
+}
 .wrapper .remember-forgot{
   display: flex;
   justify-content: space-between;

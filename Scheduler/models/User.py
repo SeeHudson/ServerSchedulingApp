@@ -14,7 +14,8 @@ class User(AbstractUser):
 
     # Create role when user is created
     #Might need to add phone number, address
-
+    email = models.EmailField('email', max_length=100, blank=True)
+    phone = models.CharField('phone', max_length=10, blank=True)
     address = models.CharField('address', max_length=100, blank=True)
     city = models.CharField('city', max_length=50, blank=True)
     state = models.CharField('state', max_length=2, blank=True)
@@ -58,11 +59,13 @@ class User(AbstractUser):
     def set_state(self, state):
         try:
             self.state = state
+            self.save()
         except ObjectDoesNotExist:
             return None  # Employee doesn't exist
 
     def set_zip_code(self, zip_code):
         try:
             self.zip_code = zip_code
+            self.save()
         except ObjectDoesNotExist:
             return None

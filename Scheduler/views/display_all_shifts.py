@@ -5,6 +5,7 @@ from django.views import View
 
 class Display_All_Shifts(View):
     def get(self, request):
+        restaurant_name = request.session.get('restaurant_name')
         shifts = Shift.objects.all()  # Ordering by day and start time for convenience
         monday_shifts = Shift.objects.filter(day='Mo')
         tuesday_shifts = Shift.objects.filter(day='Tu')
@@ -15,6 +16,7 @@ class Display_All_Shifts(View):
         sunday_shifts = Shift.objects.filter(day='Su')
 
         context = {
+            'restaurant_name': restaurant_name,
             'shifts': shifts,
             'monday_shifts': monday_shifts,
             'tuesday_shifts': tuesday_shifts,

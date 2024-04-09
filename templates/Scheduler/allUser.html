@@ -73,11 +73,6 @@
                                 <td>{{ user.first_name }}</td>
                                 <td>{{ user.last_name }}</td>
                                 <td>
-                                    <form action="{% url '' %}" method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="userNumber" value="{{ forloop.counter0 }}">
-                                        <button type="submit" class="btn btn-primary">View Details</button>
-                                    </form>
                                 </td>
                             </tr>
                             {% endfor %}

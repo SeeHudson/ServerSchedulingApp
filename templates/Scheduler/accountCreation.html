@@ -45,12 +45,12 @@
             </ul>
         </div>
     </nav>
-    <form method="post">
+    <section class="main">
+        <div class="main-top">
+            <p>ShiftMaster</p>
+        </div>
+        <form method="post">
         {% csrf_token %}
-        <section class="main">
-            <div class="main-top">
-                <p>ShiftMaster</p>
-            </div>
             <div class="main-body">
                 <h1>Create Account</h1>
                 <div class="content">
@@ -121,8 +121,8 @@
                     {% endif %}
                 </div>
             </div>
-        </section>
-    </form>
+         </form>
+    </section>
 </div>
 </body>
 </html>

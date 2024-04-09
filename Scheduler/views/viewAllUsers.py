@@ -1,7 +1,4 @@
-from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 from django.views import View
 from django.contrib.auth.forms import AuthenticationForm
 
@@ -16,4 +13,9 @@ class AllUsers(View):
         request.session.delete("message")
         if message == None:
             message = ""
-        return render(request, 'Scheduler/allUser.html', {'userList': allUsers, 'message': message})
+
+        context = {
+            'userList': allUsers,
+            'message': message
+        }
+        return render(request, 'Scheduler/allUser.html', context)

@@ -5,7 +5,6 @@ from Scheduler.models.Employee import Employee
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-@method_decorator(login_required, name='dispatch')
 class UpdateAvailability(View):
     def get(self, request):
         days = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']

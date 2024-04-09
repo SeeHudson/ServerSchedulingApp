@@ -19,7 +19,7 @@
                     <span class="nav-item">Dashboard</span>
                 </a>
                 </li>
-                <li><a href="#">
+                <li><a href="{% url 'displayAllShifts' %}">
                     <i class="fas fa-chart-bar"></i>
                     <span class="nav-item">Schedule</span>
                 </a>
@@ -54,7 +54,7 @@
             <div class="content">
                 <h3>Account Information</h3>
                 <p><strong>First Name:</strong> <label for="address"
-                                                       class="col-sm-3 col-form-label"><strong>{{ user.first_name }}</strong></label>
+                                                       class="col-sm-3 col-form-label">{{ user.first_name }}</label>
                 </p>
                 <p><strong>Last Name:</strong> {{ user.last_name }}</p>
                 <p><strong>Email:</strong> {{ user.email }}</p>
@@ -99,18 +99,29 @@
             <div class="content">
                 <div class="AccountCreation">
                     <h3>Account Creation</h3>
-                    <button onclick="location.href = 'accountcreation/';" id="createAccount" class="btn btn-primary">
-                        Edit
+                    <p>
+                    <pre>Create an account for new employees.</pre>
+                    </p>
+                    <button onclick="location.href = 'accountCreation/';" id="createAccount" class="btn btn-primary">
+                        Create Account
                     </button>
                 </div>
             </div>
             <div class="content">
                 <div class="TimeOffRequest">
-                    <h2>Time Off:</h2>
+                    <h3>Time Off:</h3>
                     <button onclick="location.href = 'timeOff';" id="requestTimeOff" class="btn btn-primary">Request
                     </button>
-                    <h3>Approved Time Off:</h3>
+                    <h4>Approved Time Off:</h4>
                     <p>No Approved Time Off</p>
+                </div>
+            </div>
+            <div class="content">
+                <div class="ServerScore">
+                    <h3>Server Score</h3>
+                    <p>Most Recent Score:</p>
+                    <p>Overall Score:</p>
+                    <button onclick="location.href = 'serverScore/';" id="serverScore" class="btn btn-primary" >Add Score</button>
                 </div>
             </div>
         </div>

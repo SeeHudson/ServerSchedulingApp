@@ -5,44 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Shift</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'stylesheets/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'stylesheets/updateAvailability.css' %}">
+    <style>
+        .checkbox-group {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .day-container {
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 <body>
-<div class="navbar">
-    <a href="{% url 'dashboard' %}">Restaurant</a>
-    <a href="#">Schedule</a>
-    <a href="#">Notifications</a>
-    <a href="{% url 'account' %}">Account</a>
-    <a href="#">Server Score</a>
-    <a href="{% url 'login' %}">Logout</a>
-</div>
 <div class="container">
-    <h2>Add New Shift</h2>
-    <form method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
+    <nav>
+        <div class="navbar">
+            <div class="logo">
+                <h1>{{ restaurant_name }}</h1> <!-- Assuming 'ShiftMaster' is your application name -->
+            </div>
+            <ul>
+                <li><a href="{% url 'dashboard' %}">
+                    <span class="nav-item">Dashboard</span>
+                </a></li>
+                <li><a href="{% url 'displayAllShifts' %}" class="active">
+                    <span class="nav-item">Schedule</span>
+                </a></li>
+                <li><a href="{% url 'account' %}">
+                    <span class="nav-item">Account</span>
+                </a></li>
+                <li><a href="#">
+                    <span class="nav-item">Notifications</span>
+                </a></li>
+                <li><a href="{% url 'viewAllUsers' %}">
+                    <span class="nav-item">View All Users</span>
+                </a></li>
+                <li><a href="{% url 'login' %}">
+                    <span class="nav-item">Logout</span>
+                </a></li>
+            </ul>
         </div>
-        <div class="form-group">
-            <label for="start_time">Start Time:</label>
-            <input type="time" id="start_time" name="start_time" required>
+    </nav>
+    <section class="main">
+        <div class="main-top">
+            <p>ShiftMaster</p>
         </div>
-        <div class="form-group">
-            <label for="end_time">End Time:</label>
-            <input type="time" id="end_time" name="end_time" required>
+        <div class="main-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="content">
+                    <h3>Add New Shift</h3>
+                    {% for day in days %}
+                        <div class="day-container">
+                            <label>{{ day }}:</label><br>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="{{ day }}Open" name="{{ day }}Availability" value="Open">
+                                <label for="{{ day }}Open">Open</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="{{ day }}Mid" name="{{ day }}Availability" value="Mid">
+                                <label for="{{ day }}Mid">Mid</label>
+                            </div>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="{{ day }}Close" name="{{ day }}Availability" value="Close">
+                                <label for="{{ day }}Close">Close</label>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <label for="employees">Assign Employees:</label>
+                        <select id="employees" name="employees" multiple required>
+                            <!-- Dynamically populate this list with employee options -->
+                            {% for employee in employees %}
+                                <option value="{{ employee.id }}">{{ employee.user.get_full_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Add Shift</button>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-            <label for="employees">Assign Employees:</label>
-            <select id="employees" name="employees" multiple required>
-                <!-- Dynamically populate this list with employee options -->
-                {% for employee in employees %}
-                    <option value="{{ employee.id }}">{{ employee.user.get_full_name }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <button type="submit" class="btn">Add Shift</button>
-    </form>
+    </section>
 </div>
 </body>
 </html>

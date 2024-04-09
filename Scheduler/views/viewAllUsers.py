@@ -5,12 +5,12 @@ from django.urls import reverse
 from django.views import View
 from django.contrib.auth.forms import AuthenticationForm
 
-from Scheduler.models import Restaurant
+from Scheduler.models import User
 
 
 class AllUsers(View):
     def get(self, request):
-        allUsers = Restaurant.get_all_employees()
+        allUsers = User.objects.all()
         form = AuthenticationForm
         message = request.session.get("message")
         request.session.delete("message")

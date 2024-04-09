@@ -16,7 +16,7 @@ class ServerScore(View):
             'restaurant_name': restaurant_name
         }
         if request.method == 'GET':
-            return render(request, "Scheduler/serverscore.html",context)
+            return render(request, "Scheduler/serverscore.html", context)
 
 
 def post(self, request):
@@ -28,3 +28,4 @@ def post(self, request):
     average_score = ((score1 + score2 + score3 + score4 + score5 ) / 5)
 
     return render(request, "Scheduler/serverscore.html")
+                  # {'employee': thisUser, 'isAdmin': isAdmin, 'isUser': isUser, 'message': message})

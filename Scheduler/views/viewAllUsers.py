@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from django.contrib.auth.forms import AuthenticationForm
 
-from Scheduler.models import User
+from Scheduler.models import User, Restaurant
 
 
 class AllUsers(View):
@@ -16,8 +16,8 @@ class AllUsers(View):
             message = ""
 
         context = {
+            'restaurant_name': restaurant_name,
             'userList': allUsers,
-            'message': message,
-            'restaurant_name': restaurant_name
+            'message': message
         }
         return render(request, 'Scheduler/allUser.html', context)

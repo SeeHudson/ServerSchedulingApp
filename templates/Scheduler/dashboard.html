@@ -17,23 +17,33 @@
             </div>
             <ul>
                 <li><a href="{% url 'dashboard' %}">
+                    <i class="fas fa-user"></i>
                     <span class="nav-item">Dashboard</span>
-                </a></li>
-                <li><a href="{% url 'displayAllShifts' %}" class="active">
+                </a>
+                </li>
+                <li><a href="{% url 'displayAllShifts' %}">
+                    <i class="fas fa-chart-bar"></i>
                     <span class="nav-item">Schedule</span>
-                </a></li>
+                </a>
+                </li>
                 <li><a href="{% url 'account' %}">
+                    <i class="fas fa-tasks"></i>
                     <span class="nav-item">Account</span>
-                </a></li>
+                </a>
+                </li>
                 <li><a href="#">
+                    <i class="fab fa-dochub"></i>
                     <span class="nav-item">Notifications</span>
-                </a></li>
-                <li><a href="{% url 'viewAllUsers' %}">
-                    <span class="nav-item">View All Users</span>
-                </a></li>
-                <li><a href="{% url 'login' %}">
-                    <span class="nav-item">Logout</span>
-                </a></li>
+                </a>
+                </li>
+                <li><a href={% url 'viewAllUsers' %}>
+                    <i class="fab fa-dochub"></i>
+                    <span class="nav-item">View all users</span>
+                </a>
+                </li>
+                <li><a href="{% url 'login' %}">Logout</a>
+                    <i class="fas fa-sign-out-alt"></i>
+                </li>
             </ul>
         </div>
     </nav>

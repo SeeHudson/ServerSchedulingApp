@@ -50,7 +50,7 @@ class EditPersonalInfo(View):
             if (zip_code != ""):
                 current_user.set_zip_code(zip_code)
 
-            status = "Successfully update this user."
+            status = "Successfully updated this user."
         except IntegrityError:
             status = "Users with duplicate emails are not allowed."
         except Exception as e:

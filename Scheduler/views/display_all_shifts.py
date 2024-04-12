@@ -5,23 +5,16 @@ from django.views import View
 
 class Display_All_Shifts(View):
     def get(self, request):
-        shifts = Shift.objects.all()  # Ordering by day and start time for convenience
-        monday_shifts = Shift.objects.filter(day='Mo')
-        tuesday_shifts = Shift.objects.filter(day='Tu')
-        wednesday_shifts = Shift.objects.filter(day='We')
-        thursday_shifts = Shift.objects.filter(day='Th')
-        friday_shifts = Shift.objects.filter(day='Fr')
-        saturday_shifts = Shift.objects.filter(day='Sa')
-        sunday_shifts = Shift.objects.filter(day='Su')
+        days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        shift_types = ["Open", "Mid", "Close"]
+
+        shifts_by_day = []
+        for day in days:
+            shifts = Shift.objects.filter(day__in=[day[:2], day])
+            shifts_by_day.append({"day": day, "shifts": shifts})
 
         context = {
-            'shifts': shifts,
-            'monday_shifts': monday_shifts,
-            'tuesday_shifts': tuesday_shifts,
-            'wednesday_shifts': wednesday_shifts,
-            'thursday_shifts': thursday_shifts,
-            'friday_shifts': friday_shifts,
-            'saturday_shifts': saturday_shifts,
-            'sunday_shifts': sunday_shifts,
+            "shifts_by_day": shifts_by_day,
+            "shift_types": shift_types,
         }
-        return render(request, 'Scheduler/display_all_shifts.html', context)
+        return render(request, "Scheduler/display_all_shifts.html", context)

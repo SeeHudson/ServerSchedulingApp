@@ -21,6 +21,6 @@ class Restaurant(models.Model):
         employees = self.get_all_employees()
         shifts = Shift.objects.none()
         for user in employees:
-            employee_shifts = Employee.objects.get(user=user).get_all_shifts_for_employee()
-            shifts = shifts | employee_shifts
+            employee_shifts = user.employee.get_all_shifts_for_employee()
+            shifts = shifts.union(employee_shifts)
         return shifts

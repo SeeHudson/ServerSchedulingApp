@@ -31,7 +31,8 @@ def reset_app(app_name):
 
 def insert_data():
     # Create Restaurant
-    restaurant = Restaurant.objects.create(restaurant_name='Grand Cafe', address='1234 Main St', city='San Francisco', zip='94111')
+    restaurant = Restaurant.objects.create(restaurant_name='Grand Cafe', address='1234 Main St', city='San Francisco',
+                                           zip='94111')
 
     # Create Users
     user1 = User.objects.create_user(username='employee_user1', password='BlahBlah', role='EMPLOYEE', first_name='John',
@@ -41,7 +42,8 @@ def insert_data():
                                      last_name='Curtis', restaurant=restaurant)
     user3 = User.objects.create_user(username='employee_user3', role='EMPLOYEE', first_name='Jaden',
                                      last_name='Wallace', restaurant=restaurant)
-    user4 = User.objects.create_user(username='employee_user4', role='EMPLOYEE', first_name='Tiffany', last_name='Liu', restaurant=restaurant)
+    user4 = User.objects.create_user(username='employee_user4', role='EMPLOYEE', first_name='Tiffany', last_name='Liu',
+                                     restaurant=restaurant)
     user_manager = User.objects.create_user(username='manager_user', password='BAS', role='MANAGER', first_name='Alice',
                                             last_name='Smith', restaurant=restaurant)
 
@@ -88,10 +90,19 @@ def delete_user(username):
         user.delete()
 
 
-if __name__ == '__main__':
-    reset_app('Scheduler')
+def refresh_data():
+    # Delete existing data in the correct order
+    EmployeeShift.objects.all().delete()
+    Shift.objects.all().delete()
+    Employee.objects.all().delete()
+    Manager.objects.all().delete()
+    User.objects.all().delete()
+    Restaurant.objects.all().delete()
+
+    # Insert new data
     insert_data()
 
-    # For testing
-    # delete_user('employee_user')
-    # delete_user('manager_user')
+
+if __name__ == '__main__':
+    reset_app('Scheduler')
+    refresh_data()

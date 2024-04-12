@@ -22,7 +22,7 @@
     <nav>
         <div class="navbar">
             <div class="logo">
-                <h1>{{ restaurant_name }}</h1> 
+                <h1>{{ restaurant_name }}</h1>
             </div>
             <ul>
                 <li><a href="{% url 'dashboard' %}">
@@ -54,32 +54,124 @@
             <form method="post">
                 {% csrf_token %}
                 <div class="content">
+                    {{ status }}
                     <h3>Add New Shift</h3>
-                    {% for day in days %}
-                        <div class="day-container">
-                            <label>{{ day }}:</label><br>
-                            <div class="checkbox-group">
-                                <input type="checkbox" id="{{ day }}Open" name="{{ day }}Availability" value="Open">
-                                <label for="{{ day }}Open">Open</label>
-                            </div>
-                            <div class="checkbox-group">
-                                <input type="checkbox" id="{{ day }}Mid" name="{{ day }}Availability" value="Mid">
-                                <label for="{{ day }}Mid">Mid</label>
-                            </div>
-                            <div class="checkbox-group">
-                                <input type="checkbox" id="{{ day }}Close" name="{{ day }}Availability" value="Close">
-                                <label for="{{ day }}Close">Close</label>
-                            </div>
+                    <div class="day-container">
+                        <label>Monday:</label><br>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="MoOpen" name="MoAvailability" value="Open">
+                            <label for="MoOpen">Open</label>
                         </div>
-                    {% endfor %}
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="MoMid" name="MoAvailability" value="Mid">
+                            <label for="MoMid">Mid</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="MoClose" name="MoAvailability" value="Close">
+                            <label for="MoClose">Close</label>
+                        </div>
+                    </div>
+                    <div class="day-container">
+                        <label>Tuesday:</label><br>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="TuOpen" name="TuAvailability" value="Open">
+                            <label for="TuOpen">Open</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="TuMid" name="TuAvailability" value="Mid">
+                            <label for="TuMid">Mid</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="TuClose" name="TuAvailability" value="Close">
+                            <label for="TuClose">Close</label>
+                        </div>
+                    </div>
+                    <div class="day-container">
+                        <label>Wednesday:</label><br>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="WeOpen" name="WeAvailability" value="Open">
+                            <label for="WeOpen">Open</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="WeMid" name="WeAvailability" value="Mid">
+                            <label for="WeMid">Mid</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="WeClose" name="WeAvailability" value="Close">
+                            <label for="WeClose">Close</label>
+                        </div>
+                    </div>
+                    <div class="day-container">
+                        <label>Thursday:</label><br>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="ThOpen" name="ThAvailability" value="Open">
+                            <label for="ThOpen">Open</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="ThMid" name="ThAvailability" value="Mid">
+                            <label for="ThMid">Mid</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="ThClose" name="ThAvailability" value="Close">
+                            <label for="ThClose">Close</label>
+                        </div>
+                    </div>
+                    <div class="day-container">
+                        <label>Friday:</label><br>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="FrOpen" name="FrAvailability" value="Open">
+                            <label for="FrOpen">Open</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="FrMid" name="FrAvailability" value="Mid">
+                            <label for="FrMid">Mid</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="FrClose" name="FrAvailability" value="Close">
+                            <label for="FrClose">Close</label>
+                        </div>
+                    </div>
+                    <div class="day-container">
+                        <label>Saturday:</label><br>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="SaOpen" name="SaAvailability" value="Open">
+                            <label for="SaOpen">Open</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="SaMid" name="SaAvailability" value="Mid">
+                            <label for="SaMid">Mid</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="SaClose" name="SaAvailability" value="Close">
+                            <label for="SaClose">Close</label>
+                        </div>
+                    </div>
+                    <div class="day-container">
+                        <label>Sunday:</label><br>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="SuOpen" name="SuAvailability" value="Open">
+                            <label for="SuOpen">Open</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="SuMid" name="SuAvailability" value="Mid">
+                            <label for="SuMid">Mid</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="SuClose" name="SuAvailability" value="Close">
+                            <label for="SuClose">Close</label>
+                        </div>
+                    </div>
                     <div class="form-group">
-                        <label for="employees">Assign Employees:</label>
-                        <select id="employees" name="employees" multiple required>
-                            <!-- Dynamically populate this list with employee options -->
+                        <div class="day-container">
+                            <label>Assign Employees:</label><br>
                             {% for employee in employees %}
-                                <option value="{{ employee.id }}">{{ employee.user.get_full_name }}</option>
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="employee{{ employee.pk }}" name="employees"
+                                           value="{{ employee.pk }}">
+                                    <label for="employee{{ employee.pk }}">{{ employee.user.get_full_name }}</label>
+                                </div>
                             {% endfor %}
-                        </select>
+                        </div>
                     </div>
                     <button type="submit" class="btn">Add Shift</button>
                 </div>

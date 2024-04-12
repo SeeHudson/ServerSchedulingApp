@@ -43,98 +43,39 @@
             <p>ShiftMaster</p>
         </div>
         <div class="main-body">
-            <h1>Dashboard</h1>
+            <form method="get">
+                {% csrf_token %}
+                <h1>Dashboard</h1>
 
-            <div class="job_card">
-                <div class="job_details">
-                    <div class="text">
-                        <h2>Announcements</h2>
-                        <span>No new announcements</span>
+                <div class="job_card">
+                    <div class="job_details">
+                        <div class="text">
+                            <h2>Announcements</h2>
+                            <span>No new announcements</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-
-            <div class="week-content">
-                <div class="day-content">
-                    <div class="day-header">Monday</div>
-                    {% for shift in monday_shifts %}
-                        <div class="shift">
-                            <div><strong>{{ shift.shift_type }}</strong></div>
-                            {% for employee in shift.employees.all %}
-                                {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                <div class="week-content">
+                    {% for day_shifts in shifts_by_day %}
+                        <div class="day-content">
+                            <div class="day-header">{{ day_shifts.day }}</div>
+                            {% for shift_type in shift_types %}
+                                <div class="shift">
+                                    <div><strong>{{ shift_type }}</strong></div>
+                                    {% for shift in day_shifts.shifts %}
+                                        {% if shift.shift_type == shift_type %}
+                                            {% for employee in shift.employees.all %}
+                                                {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
                             {% endfor %}
                         </div>
                     {% endfor %}
                 </div>
-                <div class="day-content">
-                    <div class="day-header">Tuesday</div>
-                    {% for shift in tuesday_shifts %}
-                        <div class="shift">
-                            <div><strong>{{ shift.shift_type }}</strong></div>
-                            {% for employee in shift.employees.all %}
-                                {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="day-content">
-                    <div class="day-header">Wednesday</div>
-                    {% for shift in wednesday_shifts %}
-                        <div class="shift">
-                            <div><strong>{{ shift.shift_type }}</strong></div>
-                            {% for employee in shift.employees.all %}
-                                {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="day-content">
-                    <div class="day-header">Thursday</div>
-                    {% for shift in thursday_shifts %}
-                        <div class="shift">
-                            <div><strong>{{ shift.shift_type }}</strong></div>
-                            {% for employee in shift.employees.all %}
-                                {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="day-content">
-                    <div class="day-header">Friday</div>
-                    {% for shift in friday_shifts %}
-                        <div class="shift">
-                            <div><strong>{{ shift.shift_type }}</strong></div>
-                            {% for employee in shift.employees.all %}
-                                {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="day-content">
-                    <div class="day-header">Saturday</div>
-                    {% for shift in saturday_shifts %}
-                        <div class="shift">
-                            <div><strong>{{ shift.shift_type }}</strong></div>
-                            {% for employee in shift.employees.all %}
-                                {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="day-content">
-                    <div class="day-header">Sunday</div>
-                    {% for shift in sunday_shifts %}
-                        <div class="shift">
-                            <div><strong>{{ shift.shift_type }}</strong></div>
-                            {% for employee in shift.employees.all %}
-                                {{ employee.user.get_full_name }}{% if not forloop.last %}, {% endif %}
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-
+            </form>
         </div>
         <div class="content" style="text-align: center">
             <br>

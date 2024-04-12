@@ -11,8 +11,11 @@ from Scheduler.models import Employee, User
 class ServerScore(View):
     def get(self, request):
         restaurant_name = request.session.get('restaurant_name')
+        current_user = request.user
         context = {
-            'restaurant_name': restaurant_name
+            'restaurant_name': restaurant_name,
+            "current_user": current_user,
+            'current_user_role': current_user.role,
         }
         if request.method == 'GET':
             return render(request, "Scheduler/serverscore.html", context)

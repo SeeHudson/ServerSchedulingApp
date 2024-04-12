@@ -22,6 +22,7 @@ class Dashboard(View):
             manager = Manager.objects.get(user=current_user)
             restaurant = Restaurant.objects.get(restaurant_name=restaurant_name)
             employees_shifts = restaurant.get_all_shifts()
+            return render(request, "Scheduler/dashboard.html", {'restaurant_name': restaurant_name, 'employees_shifts': employees_shifts, 'current_user': current_user})
 
         if employees_shifts is not None:
             monday_shifts = employees_shifts.filter(day='Mo')
@@ -50,6 +51,7 @@ class Dashboard(View):
             'saturday_shifts': saturday_shifts,
             'sunday_shifts': sunday_shifts,
             'current_user': current_user,
+            'current_user_role': current_user.role,
             "shifts_by_day": shifts_by_day,
             "shift_types": shift_types,
         }

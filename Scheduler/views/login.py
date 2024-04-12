@@ -30,6 +30,8 @@ class Login(View):
                 restaurant_name = restaurant.restaurant_name
                 request.session['restaurant_name'] = restaurant_name
                 # Redirect to a success page.
+                if user.role == 'MANAGER':
+                    return HttpResponseRedirect(reverse('displayAllShifts'))
                 return HttpResponseRedirect(reverse('dashboard'))
             else:
                 # Return an 'invalid login' error message.

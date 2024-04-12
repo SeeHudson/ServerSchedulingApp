@@ -35,7 +35,7 @@ def insert_data():
                                            zip='94111')
 
     # Create Users
-    user1 = User.objects.create_user(username='employee_user1', password='BlahBlah', role='EMPLOYEE', first_name='John',
+    user1 = User.objects.create_user(username='JDoe@gmail.com', password='BlahBlah', role='EMPLOYEE', first_name='John',
                                      last_name='Doe', restaurant=restaurant, email='JDoe@gmail.com')
 
     user2 = User.objects.create_user(username='employee_user2', role='EMPLOYEE', first_name='Sophia',
@@ -44,7 +44,7 @@ def insert_data():
                                      last_name='Wallace', restaurant=restaurant)
     user4 = User.objects.create_user(username='employee_user4', role='EMPLOYEE', first_name='Tiffany', last_name='Liu',
                                      restaurant=restaurant)
-    user_manager = User.objects.create_user(username='manager_user', password='BAS', role='MANAGER', first_name='Alice',
+    user_manager = User.objects.create_user(username='ASmith@gmail.com', password='BAS', role='MANAGER', first_name='Alice',
                                             last_name='Smith', restaurant=restaurant)
 
     # Create Employee and Manager

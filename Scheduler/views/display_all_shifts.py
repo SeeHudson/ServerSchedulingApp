@@ -20,5 +20,6 @@ class Display_All_Shifts(View):
             "shift_types": shift_types,
             "restaurant_name": restaurant_name,
             'user_role': current_user.role,
+            'current_user_role': current_user.role,
         }
         return render(request, "Scheduler/display_all_shifts.html", context)

@@ -8,7 +8,15 @@ from django.utils.decorators import method_decorator
 class UpdateAvailability(View):
     def get(self, request):
         days = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
-        return render(request, 'Scheduler/updateavailability.html', {'days': days})
+        current_user = request.user
+        restaurant_name = request.session.get('restaurant_name')
+        context = {
+            'days': days,
+            'current_user': current_user,
+            'current_user_role': current_user.role,
+            'restaurant_name': restaurant_name,
+        }
+        return render(request, 'Scheduler/updateavailability.html', context)
 
     def post(self, request):
         employee = Employee.objects.get(user=request.user)

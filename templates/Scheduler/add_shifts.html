@@ -25,21 +25,28 @@
                 <h1>{{ restaurant_name }}</h1>
             </div>
             <ul>
-                <li><a href="{% url 'dashboard' %}">
-                    <span class="nav-item">Dashboard</span>
-                </a></li>
-                <li><a href="{% url 'displayAllShifts' %}" class="active">
-                    <span class="nav-item">Schedule</span>
-                </a></li>
+                {% if current_user_role == "EMPLOYEE" %}
+                    <li><a href="{% url 'dashboard' %}">
+                        <span class="nav-item">Dashboard</span>
+                    </a></li>
+                    <li><a href="{% url 'displayAllShifts' %}" class="active">
+                        <span class="nav-item">Schedule</span>
+                    </a></li>
+                {% else %}
+                    <li><a href="{% url 'displayAllShifts' %}">
+                        <span class="nav-item">Dashboard</span>
+                    </a></li>
+                {% endif %}
                 <li><a href="{% url 'account' %}">
                     <span class="nav-item">Account</span>
                 </a></li>
                 <li><a href="#">
                     <span class="nav-item">Notifications</span>
                 </a></li>
-                <li><a href="{% url 'viewAllUsers' %}">
-                    <span class="nav-item">View All Users</span>
-                </a></li>
+                <li><a href={% url 'viewAllUsers' %}>
+                    <i class="fab fa-dochub"></i>
+                    <span class="nav-item">View all users</span>
+                </a>
                 <li><a href="{% url 'login' %}">
                     <span class="nav-item">Logout</span>
                 </a></li>

@@ -6,9 +6,11 @@ from django.db import IntegrityError
 
 class AccountCreation(View):
     def get(self, request):
+        current_user = request.user
         restaurant_name = request.session.get('restaurant_name')
         context = {
-            'restaurant_name': restaurant_name
+            'restaurant_name': restaurant_name,
+            'current_user_role': current_user.role,
         }
         return render(request, "Scheduler/accountcreation.html", context)
 

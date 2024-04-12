@@ -7,10 +7,12 @@ from django.db import IntegrityError
 class AddShifts(View):
     def get(self, request):
         restaurant_name = request.session.get('restaurant_name')
+        current_user = request.user
         context={
             'days': ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
             'employees': Employee.objects.all(),
-            'restaurant_name': restaurant_name
+            'restaurant_name': restaurant_name,
+            'current_user_role': current_user.role,
         }
         return render(request, "Scheduler/add_shifts.html", context)
 

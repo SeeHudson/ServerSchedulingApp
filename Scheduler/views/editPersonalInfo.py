@@ -13,6 +13,8 @@ class EditPersonalInfo(View):
             'first_name': current_user.first_name,
             'last_name': current_user.last_name,
             'email': current_user.email,
+            "current_user": current_user,
+            'current_user_role': current_user.role,
 
         }
         return render(request, "Scheduler/editPersonalInfo.html", context)

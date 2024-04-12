@@ -8,8 +8,15 @@ from Scheduler.models import Employee, Availability
 
 class Account(LoginRequiredMixin, View):
     def get(self, request):
-        user = request.user
-        employee = Employee.objects.get(user=user)
+        current_user = request.user
+        if current_user.role == 'MANAGER':
+            context = {
+                'restaurant_name': request.session.get('restaurant_name'),
+                'current_user_role': current_user.role,
+            }
+            return render(request, "Scheduler/account.html", context)
+
+        employee = Employee.objects.get(user=current_user)
         # Fetching the availability
         availabilities = Availability.objects.filter(employee=employee)
         availability_dict = {day: [] for day in
@@ -26,7 +33,7 @@ class Account(LoginRequiredMixin, View):
 
         context = {
             'restaurant_name': request.session.get('restaurant_name'),
-            'user': user,
+            'current_user_role': current_user.role,
             'availability_display': availability_display,
         }
         return render(request, "Scheduler/account.html", context)

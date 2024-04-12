@@ -8,4 +8,4 @@ class TimeOff(View):
         context = {
             'restaurant_name': restaurant_name
         }
-        return render(request, "Scheduler/timeOff.html", context)
+        return render(request, "Scheduler/timeOff.html",context)

@@ -1,5 +1,6 @@
 # Not sure if we need this
 from .User import User
+from .Availability import Availability
 from .Employee import Employee
 from .Manager import Manager
 from .Shift import Shift

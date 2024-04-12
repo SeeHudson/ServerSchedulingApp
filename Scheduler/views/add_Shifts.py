@@ -24,13 +24,15 @@ class AddShifts(View):
             shift_types = request.POST.getlist(f"{day}Availability")
             for shift_type in shift_types:
                 try:
-                    shift = Shift(day=day, shift_type=shift_type)
-                    shift.save()
+                    shift, created = Shift.objects.get_or_create(day=day, shift_type=shift_type)
                     for employee_id in selected_employees:
                         employee = Employee.objects.get(pk=employee_id)
-                        employeeShift = EmployeeShift.objects.create(user=employee, shift=shift)
-                        employeeShift.save()
-                    status = "Successfully created the shift."
+                        if EmployeeShift.objects.filter(user=employee, shift=shift).exists():
+                            status = f"Shift already exists for {employee.user.get_full_name()} on {day} ({shift_type})."
+                        else:
+                            employeeShift = EmployeeShift.objects.create(user=employee, shift=shift)
+                            employeeShift.save()
+                            status = "Successfully created the shift."
                 except Exception as e:
                     status = e
         context = {

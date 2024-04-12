@@ -4,4 +4,8 @@ from django.views import View
 
 class TimeOff(View):
     def get(self, request):
-        return render(request, "Scheduler/timeOff.html")
+        restaurant_name = request.session.get('restaurant_name')
+        context = {
+            'restaurant_name': restaurant_name
+        }
+        return render(request, "Scheduler/timeOff.html", context)

@@ -36,7 +36,7 @@ def insert_data():
 
     # Create Users
     user1 = User.objects.create_user(username='employee_user1', password='BlahBlah', role='EMPLOYEE', first_name='John',
-                                     last_name='Doe', restaurant=restaurant)
+                                     last_name='Doe', restaurant=restaurant, email='JDoe@gmail.com')
 
     user2 = User.objects.create_user(username='employee_user2', role='EMPLOYEE', first_name='Sophia',
                                      last_name='Curtis', restaurant=restaurant)

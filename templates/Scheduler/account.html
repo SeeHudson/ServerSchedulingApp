@@ -63,18 +63,16 @@
                 <button onclick="location.href = 'editPersonalInfo/';" id="editInfo" class="btn btn-primary">Edit
                 </button>
             </div>
-        
-            <div class="content">
-                <div class="Availability">
-                    <h3>Availability</h3>
-                    <p>Availability for next Schedule: </p>
-                    {% for day, availability in availability_display %}
-                        <p><pre>    {{ day }}: {{ availability }}</pre></p>
-                    {% endfor %}
-                    <button onclick="location.href = 'updateAvailability/';" id="updateAvailability" class="btn btn-primary">Edit</button>
+                <div class="content">
+                    <div class="Availability">
+                        <h3>Availability</h3>
+                        <p>Availability for next Schedule: </p>
+                        {% for day, availability in availability_display %}
+                            <p><strong>{{ day }}:</strong> {{ availability }}</p>
+                        {% endfor %}
+                        <button onclick="location.href = 'updateAvailability/';" id="updateAvailability" class="btn btn-primary">Edit</button>
+                    </div>
                 </div>
-            </div>
-        
             <div class="content">
                 <div class="AccountCreation">
                     <h3>Account Creation</h3>

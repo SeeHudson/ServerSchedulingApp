@@ -8,7 +8,6 @@ from Scheduler.models import User, Restaurant
 class AllUsers(View):
     def get(self, request):
         restaurant_name = request.session.get('restaurant_name')
-        current_user = request.user
         allUsers = User.objects.all()
         form = AuthenticationForm
         message = request.session.get("message")
@@ -19,8 +18,6 @@ class AllUsers(View):
         context = {
             'restaurant_name': restaurant_name,
             'userList': allUsers,
-            'message': message,
-            'current_user': current_user,
-            'current_user_role': current_user.role,
+            'message': message
         }
         return render(request, 'Scheduler/allUser.html', context)

@@ -1,39 +1,30 @@
 # views.py - Revised to fix availability display in Account page
-
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
 from Scheduler.models import Employee, Availability
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
-class Account(LoginRequiredMixin, View):
+class Account(View):
+    day_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+    @method_decorator(login_required)
     def get(self, request):
-        current_user = request.user
-        if current_user.role == 'MANAGER':
-            context = {
-                'restaurant_name': request.session.get('restaurant_name'),
-                'current_user_role': current_user.role,
-            }
-            return render(request, "Scheduler/account.html", context)
+        user = request.user
+        employee = Employee.objects.get(user=user)
+        availabilities = Availability.objects.filter(employee=employee).order_by('day')
 
-        employee = Employee.objects.get(user=current_user)
-        # Fetching the availability
-        availabilities = Availability.objects.filter(employee=employee)
-        availability_dict = {day: [] for day in
-                             ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']}
+        availability_dict = {day: None for day in self.day_order}
         for availability in availabilities:
             day_name = availability.get_day_display()
-            availability_dict[day_name].append(availability.get_shift_type_display())
+            availability_dict[day_name] = availability.get_shift_type_display()
 
-        # Formatting the availability for display
-        availability_display = []
-        for day, shifts in availability_dict.items():
-            formatted_shifts = ', '.join(shifts) if shifts else 'Not Available'
-            availability_display.append((day, formatted_shifts))
+        availability_display = [(day, availability_dict[day]) for day in self.day_order if availability_dict[day]]
 
         context = {
-            'restaurant_name': request.session.get('restaurant_name'),
-            'current_user_role': current_user.role,
+            'user': user,
             'availability_display': availability_display,
+            'restaurant_name': "Your Restaurant Name",
         }
-        return render(request, "Scheduler/account.html", context)
+        return render(request, 'Scheduler/account.html', context)

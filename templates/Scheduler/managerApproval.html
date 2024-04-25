@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manager Approval</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/dashboard.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/allUser.css' %}">
+    <link rel="stylesheet" href="{% static "stylesheets/allUser.css" %}">
 </head>
-
 <body>
 <div class="container">
     <nav>
@@ -47,40 +45,14 @@
             </ul>
         </div>
     </nav>
-
-      <section class="main">
+    <section class="main">
         <div class="main-top">
             <p>ShiftMaster</p>
         </div>
         <div class="main-body">
             <div class="content">
-    <h1 class="text-black">All Users</h1>
+    <h1 class="text-black">Manager Approval</h1>
 </div>
-        {% if  current_user_role == 'MANAGER' %}
-<div class="container mt-5 custom-container">
-    <div class="row">
-        <div class="col">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <table class="table">
-                        <div class="content">
-                <div class="content">
-    <div class="ServerScore">
-        <h3>Server Score</h3>
-        <p>Most Recent Score: {{ most_recent_score }}</p>
-        <p>Overall Score: {{ average_score }}</p>
-            <button onclick="location.href = 'addServerScore/';" class="btn btn-primary">Add Score</button>
-
-    </div>
-</div>
-                        </div>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        {% endif %}
 <div class="container mt-5 custom-container">
     <div class="row">
         <div class="col">
@@ -89,29 +61,38 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                {% if  current_user_role == 'MANAGER' %}
-                                    <th>Score</th>
-                                {% endif %}
+                                <th>Employee</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                                <th>Approval</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for user in userList %}
-    <tr>
-        <td>{{ user.first_name }}</td>
-        <td>{{ user.last_name }}</td>
-        {% if  current_user_role == 'MANAGER' %}
-        <td>
-            {% if user.employee %}
-                {{ user.employee.average_score }}
-            {% else %}
-                Manager
-            {% endif %}
-        </td>
-        {% endif %}
-    </tr>
-{% endfor %}
+
+                            {% for timeoff in allTimeOff %}
+                            <tr>
+                                <td>{{ timeoff.user.first_name }} {{ timeoff.user.last_name }}</td>
+                                <td>{{ timeoff.start_date }}</td>
+                                <td>{{ timeoff.end_date }}</td>
+                                <td>{{ timeoff.reason }}</td>
+                                <td>
+                                    {{ status }}
+                                </td>
+                                <td>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="username" value="{{ timeoff.user.username }}">
+                                        <input type="hidden" name="start_date" value="{{ timeoff.start_date }}">
+                                        <input type="hidden" name="end_date" value="{{ timeoff.end_date }}">
+                                        <input type="hidden" name="reason" value="{{ timeoff.reason }}">
+                                        <button type="submit" class="btn btn-primary" name="options" value="Approve">Approve</button>
+                                        <button type="submit" class="btn btn-primary" name="options" value="Decline">Decline</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

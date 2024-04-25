@@ -6,7 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from Scheduler.models import Employee, User
 
 
-class ServerScore(View):
+class addServerScore(View):
     def get(self, request):
         current_user = request.user
         allUsers = User.objects.all()
@@ -14,15 +14,9 @@ class ServerScore(View):
         context = {
             'restaurant_name': restaurant_name,
             'userList': allUsers,
-            'score1': current_user.employee.score1,
-            'score2': current_user.employee.score2,
-            'score3': current_user.employee.score3,
-            'score4': current_user.employee.score4,
-            'score5': current_user.employee.score5,
-            'average_score': current_user.employee.average_score
         }
         if request.method == 'GET':
-            return render(request, "Scheduler/serverscore.html", context)
+            return render(request, "Scheduler/addServerScore.html", context)
 
     def post(self, request):
         current_user = request.user
@@ -59,13 +53,7 @@ class ServerScore(View):
         context = {
             'restaurant_name': restaurant_name,
             'userList': allUsers,
-            'score1': selected_employee.score1,
-            'score2': selected_employee.score2,
-            'score3': selected_employee.score3,
-            'score4': selected_employee.score4,
-            'score5': selected_employee.score5,
-            'average_score': average_score
         }
 
         # Render the template with updated context
-        return render(request, "Scheduler/serverscore.html", context)
+        return render(request, "Scheduler/addServerScore.html", context)

@@ -20,6 +20,8 @@ from django.contrib import admin
 from Scheduler.views import *
 from django.shortcuts import redirect
 
+from Scheduler.views.addServerScore import addServerScore
+
 urlpatterns = [
     path('', lambda request: redirect('login')),  # Redirect to the login page
     path('admin/', admin.site.urls),
@@ -34,7 +36,7 @@ urlpatterns = [
     path('dashboard/account/accountCreation/', AccountCreation.as_view(), name='accountCreation'),
     path('dashboard/addShifts/', AddShifts.as_view(), name='addShifts'),
     path('dashboard/displayAllShifts/', Display_All_Shifts.as_view(), name='displayAllShifts'),
-    path('dashboard/account/accountCreation/', AccountCreation.as_view(), name='accountCreation'),
-    path('dashboard/displayAllShifts/addShifts/', AddShifts.as_view(), name='addShifts'),
+    path('dashboard/managerApproval', ManagerApproval.as_view(), name='managerApproval'),
+    path('dashboard/allUsers/addServerScore/', addServerScore.as_view(), name="addServerScore"),
 
 ]

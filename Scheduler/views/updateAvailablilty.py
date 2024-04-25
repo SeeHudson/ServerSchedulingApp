@@ -5,7 +5,6 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.db import transaction
-from django.contrib import messages
 
 class UpdateAvailability(View):
     day_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -13,6 +12,7 @@ class UpdateAvailability(View):
 
     @method_decorator(login_required)
     def get(self, request):
+        restaurant_name = request.session.get('restaurant_name')
         employee = Employee.objects.get(user=request.user)
         availabilities = Availability.objects.filter(employee=employee).order_by('day')
         sorted_availabilities = sorted(availabilities, key=lambda x: self.day_order.index(x.day))
@@ -23,6 +23,7 @@ class UpdateAvailability(View):
         context = {
             'days': self.day_shifts,
             'current_availabilities': current_availabilities,
+            'restaurant_name': restaurant_name,
         }
         return render(request, 'Scheduler/updateavailability.html', context)
 
@@ -41,5 +42,4 @@ class UpdateAvailability(View):
                         )
                     else:
                         Availability.objects.filter(employee=employee, day=day, shift_type=shift).delete()
-            messages.success(request, "Your availability has been updated successfully.")
-        return redirect('dashboard')
+        return redirect('account')

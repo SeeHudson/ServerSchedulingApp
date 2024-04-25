@@ -29,13 +29,15 @@
                 <li><a href="{% url 'account' %}">
                     <span class="nav-item">Account</span>
                 </a></li>
-                <li><a href="#">
-                    <span class="nav-item">Notifications</span>
-                </a></li>
                 <li><a href={% url 'viewAllUsers' %}>
                     <i class="fab fa-dochub"></i>
-                    <span class="nav-item">View all users</span>
-                </a>
+                    <span class="nav-item">View All Users</span>
+                </a></li>
+                {% if current_user_role == "MANAGER" %}
+                    <li><a href="{% url 'managerApproval' %}">
+                        <span class="nav-item">Manager Approval</span>
+                    </a></li>
+                {% endif %}
                 <li><a href="{% url 'login' %}">
                     <span class="nav-item">Logout</span>
                 </a></li>
@@ -63,6 +65,7 @@
                 <button onclick="location.href = 'editPersonalInfo/';" id="editInfo" class="btn btn-primary">Edit
                 </button>
             </div>
+            {% if current_user_role == "EMPLOYEE" %}
                 <div class="content">
                     <div class="Availability">
                         <h3>Availability</h3>
@@ -73,6 +76,8 @@
                         <button onclick="location.href = 'updateAvailability/';" id="updateAvailability" class="btn btn-primary">Edit</button>
                     </div>
                 </div>
+            {% endif %}
+            {% if current_user_role == "MANAGER" %}
             <div class="content">
                 <div class="AccountCreation">
                     <h3>Account Creation</h3>
@@ -84,6 +89,7 @@
                     </button>
                 </div>
             </div>
+            {% endif %}
             <div class="content">
                 <div class="TimeOffRequest">
                     <h3>Time Off:</h3>
@@ -93,14 +99,16 @@
                     <p>No Approved Time Off</p>
                 </div>
             </div>
+            {% if current_user_role == "EMPLOYEE" %}
             <div class="content">
                 <div class="ServerScore">
                     <h3>Server Score</h3>
-                    <p>Most Recent Score:</p>
-                    <p>Overall Score:</p>
-                    <button onclick="location.href = 'serverScore/';" id="serverScore" class="btn btn-primary" >Add Score</button>
+                    <p>Most Recent Score: {{ most_recent_score }}</p>
+                    <p>Overall Score: {{ average_score }}</p>
+                    <button onclick="location.href = 'serverScore/';" id="serverScore" class="btn btn-primary" >View Scores</button>
                 </div>
             </div>
+            {% endif %}
         </div>
     </section>
 </div>

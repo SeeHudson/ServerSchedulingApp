@@ -31,9 +31,18 @@ class Account(LoginRequiredMixin, View):
             formatted_shifts = ', '.join(shifts) if shifts else 'Not Available'
             availability_display.append((day, formatted_shifts))
 
+        if current_user.is_authenticated:
+            most_recent_score = current_user.employee.score5
+            average_score = current_user.employee.average_score
+        else:
+            most_recent_score = None
+            average_score = None
+
         context = {
             'restaurant_name': request.session.get('restaurant_name'),
             'current_user_role': current_user.role,
             'availability_display': availability_display,
+            'most_recent_score': most_recent_score,
+            'average_score': average_score
         }
         return render(request, "Scheduler/account.html", context)

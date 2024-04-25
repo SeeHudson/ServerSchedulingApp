@@ -40,13 +40,15 @@
                 <li><a href="{% url 'account' %}">
                     <span class="nav-item">Account</span>
                 </a></li>
-                <li><a href="#">
-                    <span class="nav-item">Notifications</span>
-                </a></li>
                 <li><a href={% url 'viewAllUsers' %}>
                     <i class="fab fa-dochub"></i>
-                    <span class="nav-item">View all users</span>
-                </a>
+                    <span class="nav-item">View All Users</span>
+                </a></li>
+                {% if current_user_role == "MANAGER" %}
+                    <li><a href="{% url 'managerApproval' %}">
+                        <span class="nav-item">Manager Approval</span>
+                    </a></li>
+                {% endif %}
                 <li><a href="{% url 'login' %}">
                     <span class="nav-item">Logout</span>
                 </a></li>

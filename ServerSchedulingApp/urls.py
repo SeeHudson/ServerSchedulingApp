@@ -26,6 +26,7 @@ urlpatterns = [
     path('', lambda request: redirect('login')),  # Redirect to the login page
     path('admin/', admin.site.urls),
     path('login/', Login.as_view(), name='login'),
+    path('logout/', Login.logout_view, name='logout'),
     path('dashboard/dashboard', Dashboard.as_view(), name="dashboard"),
     path('dashboard/allUsers/', AllUsers.as_view(), name="viewAllUsers"),
     path('dashboard/account/serverScore/', ServerScore.as_view(), name="serverScore"),

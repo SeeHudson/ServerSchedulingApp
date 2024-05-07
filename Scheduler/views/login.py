@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.views import View
 from django.contrib.auth.forms import AuthenticationForm
 from Scheduler.models.Restaurant import Restaurant
+from django.shortcuts import redirect
 
 
 class Login(View):
@@ -43,6 +44,4 @@ class Login(View):
 
     def logout_view(request):
         logout(request)
-        return render(request, "Scheduler/dashboard.html", {
-            'message': "Logged out"
-        })
+        return redirect('login')

@@ -34,9 +34,10 @@ urlpatterns = [
     path('dashboard/account/updateAvailability/', UpdateAvailability.as_view(), name='updateAvailability'),
     path('dashboard/account/timeOff/', TimeOff.as_view(), name='timeOff'),
     path('dashboard/account/accountCreation/', AccountCreation.as_view(), name='accountCreation'),
-    path('dashboard/addShifts/', AddShifts.as_view(), name='addShifts'),
+    path('dashboard/displayAllShifts/addShifts/', AddShifts.as_view(), name='addShifts'),
     path('dashboard/displayAllShifts/', Display_All_Shifts.as_view(), name='displayAllShifts'),
     path('dashboard/managerApproval', ManagerApproval.as_view(), name='managerApproval'),
     path('dashboard/allUsers/addServerScore/', addServerScore.as_view(), name="addServerScore"),
+    path('dashboard/auto_schedule/', AutoScheduleView.as_view(), name='auto_schedule')
 
 ]

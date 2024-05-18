@@ -10,3 +10,4 @@ from .add_Shifts import AddShifts
 from .display_all_shifts import Display_All_Shifts
 from .accountCreation import AccountCreation
 from .managerApproval import ManagerApproval
+from .AutoScheduleView import AutoScheduleView

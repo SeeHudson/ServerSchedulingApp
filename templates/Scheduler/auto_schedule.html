@@ -1,0 +1,47 @@
+<!-- auto_schedule.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Scheduler</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stylesheets/dashboard.css' %}">
+</head>
+<body>
+<div class="container">
+    <nav>
+        <div class="navbar">
+            <div class="logo">
+                <h1>{{ restaurant_name }}</h1>
+            </div>
+            <ul>
+                {% if current_user_role == "EMPLOYEE" %}
+                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li><a href="{% url 'displayAllShifts' %}">Schedule</a></li>
+                {% else %}
+                    <li><a href="{% url 'displayAllShifts' %}">Dashboard</a></li>
+                {% endif %}
+                <li><a href="{% url 'account' %}">Account</a></li>
+                <li><a href="{% url 'viewAllUsers' %}">View All Users</a></li>
+                {% if current_user_role == "MANAGER" %}
+                    <li><a href="{% url 'managerApproval' %}">Manager Approval</a></li>
+                {% endif %}
+                <li><a href="{% url 'login' %}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="main">
+        <div class="main-top">
+            <p>ShiftMaster</p>
+        </div>
+        <div class="main-body">
+            <form method="post" action="{% url 'auto_schedule' %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Generate Auto Schedule</button>
+            </form>
+        </div>
+    </section>
+</div>
+</body>
+</html>

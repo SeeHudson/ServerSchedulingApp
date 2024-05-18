@@ -3,7 +3,6 @@ from django.views import View
 from Scheduler.models import User, Restaurant
 from django.db import IntegrityError
 
-
 class AccountCreation(View):
     def get(self, request):
         current_user = request.user
@@ -24,7 +23,7 @@ class AccountCreation(View):
         zip_code = request.POST["zipcode"]
         role = request.POST["role"]
         password = request.POST["password"]
-        restaurant=Restaurant.objects.get(restaurant_name=request.session.get('restaurant_name'))
+        restaurant = Restaurant.objects.get(restaurant_name=request.session.get('restaurant_name'))
         status = ""
 
         try:
@@ -32,13 +31,13 @@ class AccountCreation(View):
                         first_name=first_name,
                         last_name=last_name,
                         email=email,
-                        password=password,
                         address=address,
                         city=city,
                         restaurant=restaurant,
                         state=state,
                         zip_code=zip_code,
                         username=email)
+            user.set_password(password)  # Properly hash the password
             user.save()
             status = "Successfully created the user."
         except IntegrityError:

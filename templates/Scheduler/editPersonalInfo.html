@@ -15,32 +15,18 @@
             </div>
             <ul>
                 {% if current_user_role == "EMPLOYEE" %}
-                    <li><a href="{% url 'dashboard' %}">
-                        <span class="nav-item">Dashboard</span>
-                    </a></li>
-                    <li><a href="{% url 'displayAllShifts' %}" class="active">
-                        <span class="nav-item">Schedule</span>
-                    </a></li>
+                    <li><a href="{% url 'dashboard' %}"><span class="nav-item">Dashboard</span></a></li>
+                    <li><a href="{% url 'displayAllShifts' %}" class="active"><span class="nav-item">Schedule</span></a></li>
                 {% else %}
-                    <li><a href="{% url 'displayAllShifts' %}">
-                        <span class="nav-item">Dashboard</span>
-                    </a></li>
+                    <li><a href="{% url 'displayAllShifts' %}"><span class="nav-item">Dashboard</span></a></li>
                 {% endif %}
-                <li><a href="{% url 'account' %}">
-                    <span class="nav-item">Account</span>
-                </a></li>
-                <li><a href={% url 'viewAllUsers' %}>
-                    <i class="fab fa-dochub"></i>
-                    <span class="nav-item">View All Users</span>
-                </a></li>
+                <li><a href="{% url 'account' %}"><span class="nav-item">Account</span></a></li>
+                <li><a href="{% url 'viewAllUsers' %}">
+                    <i class="fab fa-dochub"></i><span class="nav-item">View All Users</span></a></li>
                 {% if current_user_role == "MANAGER" %}
-                    <li><a href="{% url 'managerApproval' %}">
-                        <span class="nav-item">Manager Approval</span>
-                    </a></li>
+                    <li><a href="{% url 'managerApproval' %}"><span class="nav-item">Manager Approval</span></a></li>
                 {% endif %}
-                <li><a href="{% url 'login' %}">
-                    <span class="nav-item">Logout</span>
-                </a></li>
+                <li><a href="{% url 'login' %}"><span class="nav-item">Logout</span></a></li>
             </ul>
         </div>
     </nav>
@@ -54,56 +40,50 @@
             <div class="content">
                 <form method="post">
                     {% csrf_token %}
-                    <!--<form method = "post"> -->
                     <div class="status-message" style="text-align: center">{{ status }}</div>
-                    <!--csrf_token-->
                     <div class="form-group"> <!--First Name-->
                         <label for="first_name" class="col-sm-3 col-form-label"><strong>First Name</strong></label>
-                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="FIRST NAME HERE">
+                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="FIRST NAME HERE" value="{{ user.first_name }}">
                     </div>
                     <br>
                     <div class="form-group"> <!--Last Name-->
                         <label for="last_name" class="col-sm-3 col-form-label"><strong>Last Name</strong></label>
-                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="LAST NAME HERE">
+                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="LAST NAME HERE" value="{{ user.last_name }}">
                     </div>
                     <br>
-                    <div class="form-group"> <!--Email // Display Only-->
+                    <div class="form-group"> <!--Email-->
                         <label for="email" class="col-sm-3 col-form-label"><strong>Email</strong></label>
-                        <p>{{ email }}</p>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="EMAIL HERE" value="{{ user.email }}">
                     </div>
                     <br>
                     <div class="form-group"> <!--Phone Number-->
                         <label for="phone_number" class="col-sm-3 col-form-label"><strong>Phone Number</strong></label>
-                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="PHONE NUMBER HERE">
+                        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="PHONE NUMBER HERE" value="{{ user.phone }}">
                     </div>
                     <br>
                     <div class="form-group"> <!--Address-->
-                        <p><label for="address" class="col-sm-3 col-form-label"><strong>Address:</strong></label></p>
-                        <br>
-                        <div class="form-group"><!--Street Address-->
-                            <label for="address" class="col-sm-3 col-form-label">Street Address</label>
-                            <input type="text" class="form-control" id="address" name="address" placeholder="STREET ADDRESS HERE">
-                        </div>
-                        <div class="form-group"><!--City-->
-                            <label for="city" class="col-sm-3 col-form-label">City</label>
-                            <input type="text" class="form-control" id="city" name="city" placeholder="CITY HERE">
-                        </div>
-                        <div class="form-group"><!--State-->
-                            <label for="state" class="col-sm-3 col-form-label">State</label>
-                            <input type="text" class="form-control" id="state" name="state" placeholder="STATE HERE" >
-                        </div>
-                        <div class="form-group"><!--Zipcode-->
-                            <label for="zipcode" class="col-sm-3 col-form-label">Zipcode</label>
-                            <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="ZIPCODE HERE">
-                        </div>
+                        <label for="address" class="col-sm-3 col-form-label"><strong>Address</strong></label>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="STREET ADDRESS HERE" value="{{ user.address }}">
                     </div>
+                    <br>
+                    <div class="form-group"> <!--City-->
+                        <label for="city" class="col-sm-3 col-form-label"><strong>City</strong></label>
+                        <input type="text" class="form-control" id="city" name="city" placeholder="CITY HERE" value="{{ user.city }}">
+                    </div>
+                    <br>
+                    <div class="form-group"> <!--State-->
+                        <label for="state" class="col-sm-3 col-form-label"><strong>State</strong></label>
+                        <input type="text" class="form-control" id="state" name="state" placeholder="STATE HERE" value="{{ user.state }}">
+                    </div>
+                    <br>
+                    <div class="form-group"> <!--Zipcode-->
+                        <label for="zipcode" class="col-sm-3 col-form-label"><strong>Zipcode</strong></label>
+                        <input type="text" class="form-control" id="zipcode" name="zipcode" placeholder="ZIPCODE HERE" value="{{ user.zip_code }}">
+                    </div>
+                    <br>
                     <!--Buttons-->
                     <input type="submit" class="btn btn-primary" value="Submit">
-                    {% if account.get_primary_key == current_user.get_primary_key %}
-                        <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
-                    {% else %}
-                        <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
-                    {% endif %}
+                    <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
                 </form>
             </div>
         </div>

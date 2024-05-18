@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="container">
-<nav>
+    <nav>
         <div class="navbar">
             <div class="logo">
                 <h1>{{ restaurant_name }}</h1>
@@ -38,7 +38,7 @@
                 <li><a href="{% url 'account' %}">
                     <span class="nav-item">Account</span>
                 </a></li>
-                <li><a href={% url 'viewAllUsers' %}>
+                <li><a href="{% url 'viewAllUsers' %}">
                     <i class="fab fa-dochub"></i>
                     <span class="nav-item">View All Users</span>
                 </a></li>
@@ -67,22 +67,18 @@
                             <label>{{ day }}:</label><br>
                             {% for shift in shifts %}
                                 <div class="checkbox-group">
-                                    <input type="checkbox" id="id_{{ day }}{{ shift }}" name="{{ day }}{{ shift }}"
-                                        {% if current_availabilities.dayshift %}
+                                    <input type="checkbox" id="id_{{ day }}_{{ shift }}" name="{{ day }}_{{ shift }}"
+                                        {% if current_availabilities.day_shift %}
                                             checked
                                         {% endif %}
                                     >
-                                    <label for="id_{{ day }}{{ shift }}">{{ shift|capfirst }}</label>
+                                    <label for="id_{{ day }}_{{ shift }}">{{ shift|capfirst }}</label>
                                 </div>
                             {% endfor %}
                         </div>
                     {% endfor %}
                     <input type="submit" class="btn btn-primary" value="Submit">
-                    {% if account.get_primary_key == current_user.get_primary_key %}
-                        <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
-                    {% else %}
-                        <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
-                    {% endif %}
+                    <a class="btn btn-primary" href="{% url 'account' %}">Cancel</a>
                 </form>
             </div>
         </div>
@@ -90,3 +86,4 @@
 </div>
 </body>
 </html>
+

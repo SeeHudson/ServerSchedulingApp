@@ -16,17 +16,18 @@ body{
   width: 1300px;
   margin: auto;
 }
-nav{
+/* Navbar CSS */
+nav {
   position: sticky;
   top: 0;
   left: 0;
-  bottom: 0;
   width: 280px;
-  height: 110vh;
+  height: 100vh; /* Adjusted to 100vh to fit the viewport height */
   background: linear-gradient(to bottom, #ff927d, #ffcc99, #ffae5e);
 }
-.navbar{
-  width: 80%;
+
+.navbar {
+  width: 100%; /* Set to 100% for consistency */
   margin: 0 auto;
 }
 
@@ -37,6 +38,7 @@ nav{
 .navbar li a:hover {
   cursor: pointer;
 }
+
 
 .logo{
   margin: 1rem 0 1rem 0;

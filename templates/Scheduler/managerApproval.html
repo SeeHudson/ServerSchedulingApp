@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manager Approval</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Approval</title>
     {% load static %}
     <link rel="stylesheet" href="{% static "stylesheets/allUser.css" %}">
+    <link rel="stylesheet" href="{% static "stylesheets/dashboard.css" %}">
 </head>
 <body>
 <div class="container">
@@ -16,32 +17,18 @@
             </div>
             <ul>
                 {% if current_user_role == "EMPLOYEE" %}
-                    <li><a href="{% url 'dashboard' %}">
-                        <span class="nav-item">Dashboard</span>
-                    </a></li>
-                    <li><a href="{% url 'displayAllShifts' %}" class="active">
-                        <span class="nav-item">Schedule</span>
-                    </a></li>
+                    <li><a href="{% url 'dashboard' %}"><span class="nav-item">Dashboard</span></a></li>
+                    <li><a href="{% url 'displayAllShifts' %}" class="active"><span class="nav-item">Schedule</span></a></li>
                 {% else %}
-                    <li><a href="{% url 'displayAllShifts' %}">
-                        <span class="nav-item">Dashboard</span>
-                    </a></li>
+                    <li><a href="{% url 'displayAllShifts' %}"><span class="nav-item">Dashboard</span></a></li>
                 {% endif %}
-                <li><a href="{% url 'account' %}">
-                    <span class="nav-item">Account</span>
-                </a></li>
-                <li><a href={% url 'viewAllUsers' %}>
-                    <i class="fab fa-dochub"></i>
-                    <span class="nav-item">View All Users</span>
-                </a></li>
+                <li><a href="{% url 'account' %}"><span class="nav-item">Account</span></a></li>
+                <li><a href="{% url 'viewAllUsers' %}">
+                    <i class="fab fa-dochub"></i><span class="nav-item">View All Users</span></a></li>
                 {% if current_user_role == "MANAGER" %}
-                    <li><a href="{% url 'managerApproval' %}">
-                        <span class="nav-item">Manager Approval</span>
-                    </a></li>
+                    <li><a href="{% url 'managerApproval' %}"><span class="nav-item">Manager Approval</span></a></li>
                 {% endif %}
-                <li><a href="{% url 'login' %}">
-                    <span class="nav-item">Logout</span>
-                </a></li>
+                <li><a href="{% url 'login' %}"><span class="nav-item">Logout</span></a></li>
             </ul>
         </div>
     </nav>
@@ -51,55 +38,52 @@
         </div>
         <div class="main-body">
             <div class="content">
-    <h1 class="text-black">Manager Approval</h1>
-</div>
-<div class="container mt-5 custom-container">
-    <div class="row">
-        <div class="col">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Employee</th>
-                                <th>Start Date</th>
-                                <th>End Date</th>
-                                <th>Reason</th>
-                                <th>Status</th>
-                                <th>Approval</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            {% for timeoff in allTimeOff %}
-                            <tr>
-                                <td>{{ timeoff.user.first_name }} {{ timeoff.user.last_name }}</td>
-                                <td>{{ timeoff.start_date }}</td>
-                                <td>{{ timeoff.end_date }}</td>
-                                <td>{{ timeoff.reason }}</td>
-                                <td>
-                                    {{ status }}
-                                </td>
-                                <td>
-                                    <form method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="username" value="{{ timeoff.user.username }}">
-                                        <input type="hidden" name="start_date" value="{{ timeoff.start_date }}">
-                                        <input type="hidden" name="end_date" value="{{ timeoff.end_date }}">
-                                        <input type="hidden" name="reason" value="{{ timeoff.reason }}">
-                                        <button type="submit" class="btn btn-primary" name="options" value="Approve">Approve</button>
-                                        <button type="submit" class="btn btn-primary" name="options" value="Decline">Decline</button>
-                                    </form>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                <h1 class="text-black">Manager Approval</h1>
+                <div class="container mt-5 custom-container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Employee</th>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th>Reason</th>
+                                                <th>Status</th>
+                                                <th>Approval</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for timeoff in allTimeOff %}
+                                            <tr>
+                                                <td>{{ timeoff.user.first_name }} {{ timeoff.user.last_name }}</td>
+                                                <td>{{ timeoff.start_date }}</td>
+                                                <td>{{ timeoff.end_date }}</td>
+                                                <td>{{ timeoff.reason }}</td>
+                                                <td>{{ timeoff.status }}</td>
+                                                <td>
+                                                    <form method="post">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="username" value="{{ timeoff.user.username }}">
+                                                        <input type="hidden" name="start_date" value="{{ timeoff.start_date }}">
+                                                        <input type="hidden" name="end_date" value="{{ timeoff.end_date }}">
+                                                        <input type="hidden" name="reason" value="{{ timeoff.reason }}">
+                                                        <button type="submit" class="btn btn-primary" name="options" value="Approve">Approve</button>
+                                                        <button type="submit" class="btn btn-primary" name="options" value="Decline">Decline</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
         </div>
     </section>
 </div>
